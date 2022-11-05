@@ -1,0 +1,40 @@
+/* Name = Shubham Kumar
+   Roll_no = 036 (Enrollment no)
+   Section = I2
+   Branch = IT (3sem)
+*/
+
+#include <iostream>
+
+using namespace std;
+
+class Base
+{
+    int A;
+
+public:
+    Base(int A)
+    {
+        this->A = A;
+    }
+    inline friend void Square_of_Num(Base); // Inline friend function
+};
+
+void Square_of_Num(Base Temp)
+{
+    cout << "Square of " << Temp.A << " is " << (Temp.A) * (Temp.A) << endl;
+}
+
+int main()
+{
+    Base A(20);
+
+    Square_of_Num(A);
+
+    return 0;
+}
+
+Output
+
+PS D:\programing in c\lab work> cd "d:\programing in c\lab work\" ; if ($?) { g++ Lab4_q2.cpp -o Lab4_q2 } ; if ($?) { .\Lab4_q2 }
+Square of 20 is 400

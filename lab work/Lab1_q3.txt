@@ -1,0 +1,52 @@
+/* Name = Shubham Kumar
+   Roll_no = 036 (Enrollment no)
+   Section = I2
+   Branch = IT (3sem)
+*/
+
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+class Power
+{
+    double m;
+    int n;
+    double sq;
+
+public:
+    Power(double m = 1, int n = 1) // Deafult value of m and n.
+    {
+        this->m = m;
+        this->n = n;
+    }
+    void Find_Power(void)
+    {
+        sq = pow(m, n);
+    }
+    void Display_Power(void)
+    {
+        cout << m << " to power " << n << " is " << sq << endl;
+    }
+    ~Power(){}  //Destructor
+};
+
+int main()
+{
+    Power a(4, 5), b(4), c;
+    a.Find_Power();
+    b.Find_Power(); // Default value is 1 for n.
+    c.Find_Power(); // Both are deafult value(1 and 1).
+    a.Display_Power();
+    b.Display_Power();
+    c.Display_Power();
+    return 0;
+}
+
+Output
+
+PS D:\programing in c\lab work> cd "d:\programing in c\lab work\" ; if ($?) { g++ Lab1_q3.cpp -o Lab1_q3 } ; if ($?) { .\Lab1_q3 }
+4 to power 5 is 1024
+4 to power 1 is 4
+1 to power 1 is 1

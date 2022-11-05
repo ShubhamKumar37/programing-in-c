@@ -1,0 +1,95 @@
+/* Name = Shubham Kumar
+   Roll_no = 036 (Enrollment no)
+   Section = I2
+   Branch = IT (3sem)
+*/
+
+#include <iostream>
+
+using namespace std;
+
+class Matrix
+{
+    int row;
+    int col;
+    int **mat;
+
+public:
+    Matrix(int row, int col)
+    {
+        this->row = row;
+        this->col = col;
+        mat = new int *[row];
+        for (int i = 0; i < col; i++)
+        {
+            mat[i] = new int[col];
+        }
+    }
+    void Set_Data(void);
+    void Display_Mul(Matrix);
+    ~Matrix()
+    {
+        for(int i=0;i<col;i++)
+        {
+            delete[] mat[i];
+        }
+        delete[] mat;
+    }
+};
+
+void Matrix::Set_Data(void)
+{
+    for (int i = 0; i < col; i++)
+    {
+        for (int j = 0; j < row; j++)
+        {
+            cout << "Enter the value of " << i << " , " << j << " = ";
+            cin >> mat[i][j];
+        }
+    }
+}
+
+void Matrix ::Display_Mul(Matrix mat1)
+{
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < col; j++)
+        {
+            int ans = 0;
+            for (int k = 0; k < row; k++)
+            {
+                ans += this->mat[i][k] * mat1.mat[k][j];
+            }
+            cout << ans << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main()
+{
+    Matrix a1(2, 3), a2(3, 2);
+    a1.Set_Data();
+    a2.Set_Data();
+    a1.Display_Mul(a2);
+
+    return 0;
+}
+
+Output
+
+PS D:\programing in c\lab work> cd "d:\programing in c\lab work\" ; if ($?) { g++ Lab2_q1.cpp -o Lab2_q1 } ; if ($?) { .\Lab2_q1 }
+Enter the value of 0 , 0 = 1
+Enter the value of 0 , 1 = 2
+Enter the value of 1 , 0 = 3
+Enter the value of 1 , 1 = 4
+Enter the value of 2 , 0 = 5
+Enter the value of 2 , 1 = 6
+Enter the value of 0 , 0 = 6
+Enter the value of 0 , 1 = 5
+Enter the value of 0 , 2 = 4
+Enter the value of 1 , 0 = 3
+Enter the value of 1 , 1 = 2
+Enter the value of 1 , 2 = 1
+12 9 6 
+30 23 16

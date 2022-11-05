@@ -1,0 +1,52 @@
+/* Name = Shubham Kumar
+   Roll_no = 036 (Enrollment no)
+   Section = I2
+   Branch = IT (3sem)
+*/
+
+#include <iostream>
+
+using namespace std;
+
+class Complex
+{
+    int Real;
+    int Imag;
+
+public:
+    Complex() {}
+    Complex(int a)
+    {
+        Real = a;
+        Imag = a;
+    }
+    Complex(int a, int b)
+    {
+        Real = a;
+        Imag = b;
+    }
+    void display(void)
+    {
+        cout << "Final complex number will be " << Real
+             << " + " << Imag << "j" << endl;
+    }
+    ~Complex(){}
+};
+
+int main()
+{
+    Complex a, b(5), c(6, 2);
+
+    a.display();
+    b.display();
+    c.display();
+
+    return 0;
+}
+
+Output
+
+PS D:\programing in c\lab work> cd "d:\programing in c\lab work\" ; if ($?) { g++ Lab3_q2.cpp -o Lab3_q2 } ; if ($?) { .\Lab3_q2 }
+Final complex number will be 16 + 0j // 16 and 0 are garbage value as both are not initialized in constructor
+Final complex number will be 5 + 5j
+Final complex number will be 6 + 2j

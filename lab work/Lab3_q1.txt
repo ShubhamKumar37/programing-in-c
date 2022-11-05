@@ -1,0 +1,44 @@
+/* Name = Shubham Kumar
+   Roll_no = 036 (Enrollment no)
+   Section = I2
+   Branch = IT (3sem)
+*/
+
+#include <iostream>
+
+using namespace std;
+
+class Factorial
+{
+    int n;
+    int fact = 1;
+
+public:
+    Factorial(int n)
+    {
+        this->n = n;
+        for (int i = 1; i <= n; i++)
+        {
+            fact *= i;
+        }
+    }
+    void display(void)
+    {
+        cout << "Factorial of " << n << " is " << fact << endl;
+    }
+    ~Factorial(){}
+};
+
+int main()
+{
+    Factorial a(5), b(10);
+    a.display();
+    b.display();
+    return 0;
+}
+
+Output
+
+PS D:\programing in c> cd "d:\programing in c\lab work\" ; if ($?) { g++ Lab3_q1.cpp -o Lab3_q1 } ; if ($?) { .\Lab3_q1 }
+Factorial of 5 is 120
+Factorial of 10 is 3628800

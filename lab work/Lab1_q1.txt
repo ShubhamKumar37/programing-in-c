@@ -1,0 +1,80 @@
+/* Name = Shubham Kumar
+   Roll_no = 036 (Enrollment no)
+   Section = I2
+   Branch = IT (3sem)
+*/
+
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+class Person
+{
+    char *name;
+    char *address;
+    int age;
+    double salary;
+
+public:
+    void setdata(void)
+    {
+        char nam[20];
+        char ad[20];
+
+        cout << "Enter the name of the person = ";
+        gets(nam);
+        name = new char[sizeof(nam) / sizeof(char)];
+        strcpy(name, nam);
+
+        cout << "Enter the address of the person = ";
+        gets(ad);
+        address = new char[sizeof(ad) / sizeof(char)];
+        strcpy(address, ad);
+
+        cout << "Enter the age of the person = ";
+        cin >> age;
+
+        cout << "Enter the salary of the person = ";
+        cin >> salary;
+    }
+    void display(void)
+    {
+        cout << "Name of the person is " << name << endl;
+        cout << "Address of the person is " << address << endl;
+        cout << "Age of the person is " << age << endl;
+        cout << "Salary of the person is " << salary << endl;
+    }
+    ~Person() //Destructor
+    {
+        delete name;
+        delete address;
+    }
+};
+
+int main()
+{
+    Person a;
+    a.setdata();
+    a.display();
+    return 0;
+}
+int main()
+{
+    Person a;
+    a.setdata();
+    a.display();
+    return 0;
+}
+
+Output
+
+PS D:\programing in c\lab work> cd "d:\programing in c\lab work\" ; if ($?) { g++ Lab1_q1.cpp -o Lab1_q1 } ; if ($?) { .\Lab1_q1 }
+Enter the name of the person = Shubham Kumar
+Enter the address of the person = Yamuna Vihar
+Enter the age of the person = 19
+Enter the salary of the person = 300000
+Name of the person is Shubham Kumar
+Address of the person is Yamuna Vihar
+Age of the person is 19
+Salary of the person is 300000

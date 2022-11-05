@@ -1,0 +1,51 @@
+/* Name = Shubham Kumar
+   Roll_no = 036 (Enrollment no)
+   Section = I2
+   Branch = IT (3sem)
+*/
+
+#include <iostream>
+
+using namespace std;
+
+class Base
+{
+    int A;
+
+public:
+    Base(int A)
+    {
+        this->A = A;
+    }
+    inline friend int Display_Max3(Base, Base, Base); // Friend function
+};
+
+int Display_Max3(Base A, Base B, Base C)
+{
+    if (A.A > B.A && A.A > C.A)
+    {
+        return A.A;
+    }
+    else if (B.A > A.A && B.A > C.A)
+    {
+        return B.A;
+    }
+    else
+    {
+        return C.A;
+    }
+}
+
+int main()
+{
+    Base A(20), B(30), C(10);
+
+    cout << "Max in 3 number is " << Display_Max3(A, B, C);
+
+    return 0;
+}
+
+Output
+
+PS D:\programing in c\lab work> cd "d:\programing in c\lab work\" ; if ($?) { g++ Lab4_q1.cpp -o Lab4_q1 } ; if ($?) { .\Lab4_q1 }
+Max in 3 number is 30

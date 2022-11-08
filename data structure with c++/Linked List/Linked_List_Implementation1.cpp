@@ -149,5 +149,7 @@ int main()
     Print_List(Head);
     // cout << Head->Data<<endl;
 
+    // cout<<Tail->Data<<endl;
+
     return 0;
 }

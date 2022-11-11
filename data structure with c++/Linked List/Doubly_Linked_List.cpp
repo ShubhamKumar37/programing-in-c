@@ -180,7 +180,7 @@ void Push_Middle(Node *&Head, Node *&Tail, int Data, int Ind)
     Node *New_Node = new Node(Data);
 
     New_Node->next = Temp->next;
+    Temp->next->prev = New_Node;
     New_Node->prev = Temp;
-    Temp->next = New_Node;
-    New_Node->prev = Temp;
+    Temp->next=New_Node;
 }

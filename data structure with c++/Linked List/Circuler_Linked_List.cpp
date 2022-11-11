@@ -31,23 +31,23 @@ void Delete_Ele(Node *&Tail, int Ele);
 
 int main()
 {
-    // Node *A = new Node(34);
-    // Node *Tail=A;
-    Node *Tail = NULL;
+    Node *A = new Node(40);
+    Node *Tail=A;
+    // Node *Tail = NULL;
 
     // Print_List(Tail);
 
-    // Insertion_Ele(Tail, 34, 40);
+    Insertion_Ele(Tail, 40, 50);
     Node *Temp = Tail;
     // Print_List(Tail);
-    Insertion_Ele(Tail, 40, 80);
+    // Insertion_Ele(Tail, 40, 80);
     // Print_List(Tail);
     // Insertion_Ele(Tail, 40, 60);
     // Print_List(Tail);
     // Insertion_Ele(Tail, 40, 100);
-    // Print_List(Tail);
+    Print_List(Tail);
 
-    Delete_Ele(Tail, 80);
+    Delete_Ele(Tail, 50);
 
     Print_List(Tail);
     // cout<<" "<<Tail->Data<<endl;

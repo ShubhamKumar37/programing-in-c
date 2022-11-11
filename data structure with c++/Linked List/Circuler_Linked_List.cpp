@@ -27,7 +27,7 @@ public:
 
 void Insertion_Ele(Node *&Tail, int Ele, int Data);
 void Print_List(Node *&Tail);
-void Delete_Ele(Node* &Tail,int Ele);
+void Delete_Ele(Node *&Tail, int Ele);
 
 int main()
 {
@@ -47,7 +47,7 @@ int main()
     // Insertion_Ele(Tail, 40, 100);
     // Print_List(Tail);
 
-    Delete_Ele(Tail,80);
+    Delete_Ele(Tail, 80);
 
     Print_List(Tail);
     // cout<<" "<<Tail->Data<<endl;
@@ -55,38 +55,36 @@ int main()
     return 0;
 }
 
-
-
-void Delete_Ele(Node* &Tail,int Ele)
+void Delete_Ele(Node *&Tail, int Ele)
 {
-    if(Tail==NULL)
+    if (Tail == NULL)
     {
-        cout<<"List is empty"<<endl;
-        return ;
+        cout << "List is empty" << endl;
+        return;
     }
     else
     {
-        Node* Prev=Tail;
-        Node* Temp=Prev->next;
+        Node *Prev = Tail;
+        Node *Temp = Prev->next;
 
-        while(Temp->Data!=Ele)
+        while (Temp->Data != Ele)
         {
-            Prev=Temp;
-            Temp=Temp->next;
+            Prev = Temp;
+            Temp = Temp->next;
         }
 
-        Prev->next=Temp->next;
+        Prev->next = Temp->next;
 
-        if(Prev==Temp)
+        if (Prev == Temp)
         {
-            Tail=NULL;    
+            Tail = NULL;
         }
-        else if(Temp==Tail)
+        else if (Temp == Tail)
         {
-            Tail=Prev;
+            Tail = Prev;
         }
-        
-        Temp->next=NULL;
+
+        Temp->next = NULL;
         delete Temp;
     }
 }

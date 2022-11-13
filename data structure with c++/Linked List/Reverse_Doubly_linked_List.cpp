@@ -3,20 +3,20 @@
 
 using namespace std;
 
-void Reverse_List(Node *&Head,Node* &Tail)
+void Reverse_List(Node *&Head, Node *&Tail)
 {
-    Node* Prev_Node=NULL;
-    Node* Curr=Head;
-    Tail=Curr;
-    while(Curr!=NULL)
+    Node *Prev_Node = NULL;
+    Node *Curr = Head;
+    Tail = Curr;
+    while (Curr != NULL)
     {
-        Curr->prev=Curr->next;
-        Curr->next=Prev_Node;
-        Prev_Node=Curr;
-        Curr=Curr->prev;
+        Curr->prev = Curr->next;
+        Curr->next = Prev_Node;
+        Prev_Node = Curr;
+        Curr = Curr->prev;
     }
-    cout<<"Done"<<endl;
-    Head=Prev_Node;
+    cout << "Done" << endl;
+    Head = Prev_Node;
 }
 
 int main()
@@ -36,10 +36,9 @@ int main()
     Push_Middle(Head, Tail, 1, 1);
     Push_Middle(Head, Tail, 11, 8);
 
-
     Print_List(Head);
 
-    Reverse_List(Head,Tail);
+    Reverse_List(Head, Tail);
 
     Print_List(Head);
 

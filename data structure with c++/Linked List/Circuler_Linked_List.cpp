@@ -32,7 +32,7 @@ void Delete_Ele(Node *&Tail, int Ele);
 int main()
 {
     Node *A = new Node(40);
-    Node *Tail=A;
+    Node *Tail = A;
     // Node *Tail = NULL;
 
     // Print_List(Tail);

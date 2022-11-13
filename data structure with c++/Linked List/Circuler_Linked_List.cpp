@@ -29,31 +29,31 @@ void Insertion_Ele(Node *&Tail, int Ele, int Data);
 void Print_List(Node *&Tail);
 void Delete_Ele(Node *&Tail, int Ele);
 
-int main()
-{
-    Node *A = new Node(40);
-    Node *Tail = A;
-    // Node *Tail = NULL;
+// int main()
+// {
+//     Node *A = new Node(40);
+//     Node *Tail = A;
+//     // Node *Tail = NULL;
 
-    // Print_List(Tail);
+//     // Print_List(Tail);
 
-    Insertion_Ele(Tail, 40, 50);
-    Node *Temp = Tail;
-    // Print_List(Tail);
-    // Insertion_Ele(Tail, 40, 80);
-    // Print_List(Tail);
-    // Insertion_Ele(Tail, 40, 60);
-    // Print_List(Tail);
-    // Insertion_Ele(Tail, 40, 100);
-    Print_List(Tail);
+//     Insertion_Ele(Tail, 40, 50);
+//     Node *Temp = Tail;
+//     // Print_List(Tail);
+//     // Insertion_Ele(Tail, 40, 80);
+//     // Print_List(Tail);
+//     // Insertion_Ele(Tail, 40, 60);
+//     // Print_List(Tail);
+//     // Insertion_Ele(Tail, 40, 100);
+//     Print_List(Tail);
 
-    Delete_Ele(Tail, 50);
+//     Delete_Ele(Tail, 50);
 
-    Print_List(Tail);
-    // cout<<" "<<Tail->Data<<endl;
+//     Print_List(Tail);
+//     // cout<<" "<<Tail->Data<<endl;
 
-    return 0;
-}
+//     return 0;
+// }
 
 void Delete_Ele(Node *&Tail, int Ele)
 {

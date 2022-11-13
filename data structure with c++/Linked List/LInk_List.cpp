@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 class Node
 {
 public:
@@ -16,13 +15,13 @@ public:
     }
     ~Node()
     {
-        int val=this->Data;
-        if(this->next!=NULL)
+        int val = this->Data;
+        if (this->next != NULL)
         {
             delete next;
-            this->next=NULL;
+            this->next = NULL;
         }
-        cout<<"Delete done"<<endl;
+        cout << "Delete done" << endl;
     }
 };
 
@@ -62,7 +61,7 @@ void Push_Front(Node *&Head, int Data)
     Head = Temp;
 }
 
-int Length(Node* &Head)
+int Length(Node *&Head)
 {
     Node *Temp = Head;
     int Len = 1;
@@ -99,32 +98,50 @@ void Push_Middle(Node *&Head, Node *&Tail, int Data, int Ind)
     T->next = Temp;
 }
 
-void Delete_Ele(int Ind,Node *&Head)
+void Delete_Ele(int Ind, Node *&Head)
 {
-    if(Ind==1)
+    if (Ind == 1)
     {
         Node *Curr = Head;
         Head = Head->next;
-        Curr->next=NULL;
+        Curr->next = NULL;
         delete Curr;
     }
     else
     {
-        Node *Prev=NULL;
-        Node *Temp=Head;
-        int Count=1;
-        while(Count<Ind)
+        Node *Prev = NULL;
+        Node *Temp = Head;
+        int Count = 1;
+        while (Count < Ind)
         {
-            Prev=Temp;
-            Temp=Temp->next;
+            Prev = Temp;
+            Temp = Temp->next;
             Count++;
         }
 
-        Prev->next=Temp->next;
-        Temp->next=NULL;
+        Prev->next = Temp->next;
+        Temp->next = NULL;
         delete Temp;
-
     }
+}
+bool Check_Circular(Node *Head)
+{
+    if (Head == NULL || Head->next == NULL)
+    {
+        return 0;
+    }
+
+    Node *Temp = Head;
+    do
+    {
+        if (Temp->next == NULL)
+        {
+            return 0;
+        }
+        Temp = Temp->next;
+    } while (Temp != Head);
+
+    return Temp == Head ? 1 : 0;
 }
 
 int main()
@@ -156,23 +173,33 @@ int main()
     Push_Middle(Head, Tail, 100, 7);
     Push_Middle(Head, Tail, 45, 1);
 
-    Print_List(Head);
-    cout << endl;
+    int Ans = Check_Circular(Head);
 
-    cout << "Length of the linked list is " << Length(Head) << endl;
-
+    if (Ans)
+    {
+        cout << "Linked list is circular" << endl;
+    }
+    else
+    {
+        cout << "Linked list is not circular" << endl;
+    }
 
     // Print_List(Head);
+    // cout << endl;
 
-    Delete_Ele(1,Head);
-    Print_List(Head);
-    cout<<endl;
-    cout << "Length of the linked list is " << Length(Head) << endl;
-    Delete_Ele(1,Head);
-    Print_List(Head);
+    // cout << "Length of the linked list is " << Length(Head) << endl;
+
+    // // Print_List(Head);
+
+    // Delete_Ele(1,Head);
+    // Print_List(Head);
+    // cout<<endl;
+    // cout << "Length of the linked list is " << Length(Head) << endl;
+    // Delete_Ele(1,Head);
+    // Print_List(Head);
 
     // cout << Head->Data<<endl;
-    cout<<endl;
+    cout << endl;
 
     cout << "Length of the linked list is " << Length(Head) << endl;
     return 0;

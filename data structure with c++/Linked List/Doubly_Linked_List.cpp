@@ -36,41 +36,41 @@ void Push_Back(Node *&Tail, Node *&Head, int Data);
 void Push_Middle(Node *&Head, Node *&Tail, int Data, int Ind);
 void Delete_Ele(Node *&Head, Node *&Tail, int Ind);
 
-int main()
-{
-    // Node *A = new Node(5);
-    Node *Head = NULL;
-    Node *Tail = NULL;
-    // Node *A = new Node(5);
-    // Node *Head = A;
-    // Node *Tail = A;
+// int main()
+// {
+//     // Node *A = new Node(5);
+//     Node *Head = NULL;
+//     Node *Tail = NULL;
+//     // Node *A = new Node(5);
+//     // Node *Head = A;
+//     // Node *Tail = A;
 
-    // Print_List(Head);
+//     // Print_List(Head);
 
-    Push_Front(Head, Tail, 4);
-    Push_Front(Head, Tail, 3);
-    Push_Front(Head, Tail, 2);
+//     Push_Front(Head, Tail, 4);
+//     Push_Front(Head, Tail, 3);
+//     Push_Front(Head, Tail, 2);
 
-    Push_Back(Tail, Head, 6);
-    Push_Back(Tail, Head, 7);
+//     Push_Back(Tail, Head, 6);
+//     Push_Back(Tail, Head, 7);
 
-    Push_Middle(Head, Tail, 100, 2);
-    Push_Middle(Head, Tail, 1, 1);
-    Push_Middle(Head, Tail, 11, 8);
-    Print_List(Head);
+//     Push_Middle(Head, Tail, 100, 2);
+//     Push_Middle(Head, Tail, 1, 1);
+//     Push_Middle(Head, Tail, 11, 8);
+//     // Print_List(Head);
 
-    Delete_Ele(Head, Tail, 1);
-    Delete_Ele(Head, Tail, 7);
-    Delete_Ele(Head, Tail, 2);
-    Delete_Ele(Head, Tail, 4);
+//     // Delete_Ele(Head, Tail, 1);
+//     // Delete_Ele(Head, Tail, 7);
+//     // Delete_Ele(Head, Tail, 2);
+//     // Delete_Ele(Head, Tail, 4);
 
-    Print_List(Head);
+//     Print_List(Head);
 
-    cout << Head->Data << endl;
-    cout << Tail->Data << endl;
+//     cout << Head->Data << endl;
+//     cout << Tail->Data << endl;
 
-    return 0;
-}
+//     return 0;
+// }
 
 void Delete_Ele(Node *&Head, Node *&Tail, int Ind)
 {

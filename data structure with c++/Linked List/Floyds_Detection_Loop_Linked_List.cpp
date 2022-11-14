@@ -5,10 +5,10 @@ using namespace std;
 
 void Detect_Loop(Node *Head)
 {
-    if(Head==NULL)
+    if (Head == NULL)
     {
-        cout<<"List is empty"<<endl;
-        return ;
+        cout << "List is empty" << endl;
+        return;
     }
     Node *Slow = Head;
     Node *Fast = Head;
@@ -37,10 +37,10 @@ void Detect_Loop(Node *Head)
 
 void Remove_Loop(Node *Head, Node *&Tail)
 {
-    if(Head==NULL)
+    if (Head == NULL)
     {
-        cout<<"List is empty"<<endl;
-        return ;
+        cout << "List is empty" << endl;
+        return;
     }
     Node *Slow = Head;
     Node *Fast = Head;
@@ -58,25 +58,23 @@ void Remove_Loop(Node *Head, Node *&Tail)
             break;
         }
     }
-    cout<<"Done"<<endl;
+    cout << "Done" << endl;
     Slow = Head;
-    Node* Prev=NULL;
-    while (Slow != Fast)
+    while (Slow != Fast->next)
     {
-        Prev=Fast;
         Slow = Slow->next;
         Fast = Fast->next;
     }
-    Prev->next = NULL;
-    Tail = Prev;
+    Fast->next = NULL;
+    Tail = Fast;
 }
 
 // bool Detect_Loop(Node *Head)
 // {
-    //    if(Head==NULL)
-    //    {
-    //         return NULL; 
-    //    }
+//    if(Head==NULL)
+//    {
+//         return NULL;
+//    }
 //     Node *Slow = Head;
 //     Node *Fast = Head;
 //     while (Slow != NULL && Fast != NULL)
@@ -120,10 +118,10 @@ int main()
     Tail->next = Head->next->next->next;
 
     // bool Ans = Detect_Loop(Head);
-    Head=NULL;
+    Head = NULL;
     Detect_Loop(Head);
 
-    Remove_Loop(Head,Tail);
+    Remove_Loop(Head, Tail);
 
     // cout<<Head->Data<<" "<<Tail->Data<<endl;
     Print_List(Head);

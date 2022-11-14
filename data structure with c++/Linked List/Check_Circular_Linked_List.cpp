@@ -36,15 +36,15 @@ int main()
     Insertion_Ele(Tail, 40, 60);
     Print_List(Tail);
 
-    int Ans=Check_Circular(Tail);
+    int Ans = Check_Circular(Tail);
 
-    if(Ans)
+    if (Ans)
     {
-        cout<<"Linked list is circular "<<endl;
+        cout << "Linked list is circular " << endl;
     }
     else
     {
-        cout<<"Linked list is not circular "<<endl;
+        cout << "Linked list is not circular " << endl;
     }
 
     return 0;

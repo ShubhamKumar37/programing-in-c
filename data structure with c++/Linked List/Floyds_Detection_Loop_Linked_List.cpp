@@ -29,6 +29,38 @@ void Detect_Loop(Node *Head)
     }
     cout << Slow->Data << " is the starting point of circular loop " << endl;
 }
+
+void Remove_Loop(Node *Head, Node *&Tail)
+{
+    Node *Slow = Head;
+    Node *Fast = Head;
+    while (Slow != NULL && Fast != NULL)
+    {
+        Fast = Fast->next;
+        if (Fast != NULL)
+        {
+            Fast = Fast->next;
+        }
+
+        Slow = Slow->next;
+        if (Slow == Fast)
+        {
+            break;
+        }
+    }
+    cout<<"Done"<<endl;
+    Slow = Head;
+    Node* Prev=NULL;
+    while (Slow != Fast)
+    {
+        Prev=Fast;
+        Slow = Slow->next;
+        Fast = Fast->next;
+    }
+    Prev->next = NULL;
+    Tail = Prev;
+}
+
 // bool Detect_Loop(Node *Head)
 // {
 //     Node *Slow = Head;
@@ -75,6 +107,12 @@ int main()
 
     // bool Ans = Detect_Loop(Head);
     Detect_Loop(Head);
+
+    Remove_Loop(Head,Tail);
+
+    cout<<Head->Data<<" "<<Tail->Data<<endl;
+    Print_List(Head);
+
     // if (Ans)
     // {
     //     cout << "Linked list is circular" << endl;

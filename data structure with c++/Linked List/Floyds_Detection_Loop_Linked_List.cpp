@@ -5,6 +5,11 @@ using namespace std;
 
 void Detect_Loop(Node *Head)
 {
+    if(Head==NULL)
+    {
+        cout<<"List is empty"<<endl;
+        return ;
+    }
     Node *Slow = Head;
     Node *Fast = Head;
     while (Slow != NULL && Fast != NULL)
@@ -32,6 +37,11 @@ void Detect_Loop(Node *Head)
 
 void Remove_Loop(Node *Head, Node *&Tail)
 {
+    if(Head==NULL)
+    {
+        cout<<"List is empty"<<endl;
+        return ;
+    }
     Node *Slow = Head;
     Node *Fast = Head;
     while (Slow != NULL && Fast != NULL)
@@ -63,6 +73,10 @@ void Remove_Loop(Node *Head, Node *&Tail)
 
 // bool Detect_Loop(Node *Head)
 // {
+    //    if(Head==NULL)
+    //    {
+    //         return NULL; 
+    //    }
 //     Node *Slow = Head;
 //     Node *Fast = Head;
 //     while (Slow != NULL && Fast != NULL)
@@ -106,11 +120,12 @@ int main()
     Tail->next = Head->next->next->next;
 
     // bool Ans = Detect_Loop(Head);
+    Head=NULL;
     Detect_Loop(Head);
 
     Remove_Loop(Head,Tail);
 
-    cout<<Head->Data<<" "<<Tail->Data<<endl;
+    // cout<<Head->Data<<" "<<Tail->Data<<endl;
     Print_List(Head);
 
     // if (Ans)

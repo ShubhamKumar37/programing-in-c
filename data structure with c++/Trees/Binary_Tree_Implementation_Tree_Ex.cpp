@@ -60,72 +60,157 @@ void Traversal_Level_Order(Node *Root)
         else
         {
 
-            if (Temp->left )
+            if (Temp->left)
             {
                 Ans.push(Temp->left);
             }
-            if (Temp->right )
+            if (Temp->right)
             {
                 Ans.push(Temp->right);
             }
         }
     }
-    cout<<endl;
+    cout << endl;
 }
 
-void Pre_Traversal(Node* Root)
+void Pre_Traversal(Node *Root)
 {
-    if(Root==NULL)
+    if (Root == NULL)
     {
-        return ;
+        return;
     }
-    cout<<Root->data<<" ";
+    cout << Root->data << " ";
     Pre_Traversal(Root->left);
     Pre_Traversal(Root->right);
 }
-void In_Traversal(Node* Root)
+void In_Traversal(Node *Root)
 {
-    if(Root==NULL)
+    if (Root == NULL)
     {
-        return ;
+        return;
     }
     In_Traversal(Root->left);
-    cout<<Root->data<<" ";
+    cout << Root->data << " ";
     In_Traversal(Root->right);
 }
-void Post_Traversal(Node* Root)
+void Post_Traversal(Node *Root)
 {
-    if(Root==NULL)
+    if (Root == NULL)
     {
-        return ;
+        return;
     }
     Post_Traversal(Root->left);
     Post_Traversal(Root->right);
-    cout<<Root->data<<" ";
+    cout << Root->data << " ";
 }
 
-Node* Create_Node(int Data)
+bool Search_Tree(Node *Root, int K)
 {
-    Node* Root;
-    Root->data=Data;
-    Root->left=NULL;
-    Root->right=NULL;
+    if (Root == NULL)
+    {
+        return 0;
+    }
+    else if (Root->data == K)
+    {
+        return 1;
+    }
+    else if (Root->data < K)
+    {
+        return Search_Tree(Root->right, K);
+    }
+    else
+    {
+        return Search_Tree(Root->left, K);
+    }
+}
+
+bool Search_Tree_Itr(Node *Root, int K)
+{
+    while (Root != NULL)
+    {
+        if (Root->data == K)
+        {
+            return 1;
+        }
+        else if (Root->data < K)
+        {
+            Root = Root->right;
+        }
+        else
+        {
+            Root = Root->left;
+        }
+    }
+    return 0;
+}
+
+Node *Create_Node(int Data)
+{
+    Node *Root;
+    Root->data = Data;
+    Root->left = NULL;
+    Root->right = NULL;
 
     return Root;
+}
+
+void Insertion_BST(Node* R,int Key)
+{
+    Node* Root=R;
+    Node* Prev=NULL;
+    while(Root!=NULL)
+    {
+        Prev=Root;
+        if(Root->data==Key)
+        {
+            cout<<"You entered dupicate element !!!!"<<endl;
+            return ;
+        }
+        else if(Root->data<Key)
+        {
+            Root=Root->right;
+        }
+        else
+        {
+            Root=Root->left;
+        }
+        cout<<"Gaya"<<endl;
+    }
+    cout<<"Done"<<endl;
+    Node* New_Node=new Node(Key);
+    // if(Prev->data<Key)
+    // {
+    //     Root->right=New_Node;
+    // }
+    // else
+    // {
+    //     Root->left=New_Node;
+    // }
+    Root->left=New_Node;
+    cout<<"Insertion is complete "<<endl;
 }
 
 int main()
 {
 
-    Node* Root=NULL;
-    Root=Creation_Tree(Root);
-    cout<<endl;
+    Node *Root = NULL;
+    Root = Creation_Tree(Root);
+    cout << endl;
     Pre_Traversal(Root);
-    cout<<endl;
+    cout << endl;
     In_Traversal(Root);
-    cout<<endl;
+    cout << endl;
     Post_Traversal(Root);
+    cout << endl;
 
+    cout << "Entered number is find or not " << endl;
+    cout << Search_Tree(Root, 345) << endl;
+    cout << Search_Tree_Itr(Root, 3) << endl;
+
+    Insertion_BST(Root,2);
+
+    In_Traversal(Root);
+    cout << endl;
     // Node *Root= Create_Node(1);
     // Node *L1 = Create_Node(2);
     // Node *R1 = Create_Node(3);
@@ -140,7 +225,6 @@ int main()
     // Root = Creation_Tree(Root);
     // cout<<"Value in root = "<<Root->left->left->data<<endl;
     // Traversal_Level_Order(Root);
-
 
     return 0;
 }

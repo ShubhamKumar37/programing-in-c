@@ -124,5 +124,6 @@ void stack<a>::display(void)
     for (int i = 0; i < top + 1; i++)
     {
         cout << arr[i] << endl;
+        // arr.pop();
     }
 }

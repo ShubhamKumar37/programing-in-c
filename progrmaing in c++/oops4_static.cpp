@@ -34,6 +34,15 @@ public:
             cout << num << " is the position of the item" << endl;
         }
     }
+    static void show(void)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            // cout << "Id of the item is " << id[i] << endl;
+            // cout << "Price of the item is " << price[i] << endl;
+            cout << num << " is the position of the item" << endl;
+        }
+    }
 };
 
 int shop ::num; // static set the default as 0.
@@ -46,5 +55,6 @@ int main()
     s1.getprice();
     s1.getprice();
     s1.display();
+    shop::show();
     return 0;
 }

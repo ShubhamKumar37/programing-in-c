@@ -7,6 +7,7 @@
         "algorithm": "cpp",
         "type_traits": "cpp",
         "vector": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "stack": "cpp"
     }
 }

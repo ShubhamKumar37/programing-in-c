@@ -1,25 +1,24 @@
-#include<iostream>
-#include<stack>
+#include <iostream>
+#include <stack>
 
 using namespace std;
 
 int main()
 {
-    stack <char> a;
-    string b="Shubham is a great boy";
-    string c="";
-    for(int i=0;i<b.size();i++)
+    stack<char> A;
+    string Ch = "Shubham is a good boy yob doog a si mahbuhS";
+
+    for (int i = 0; i < Ch.size(); i++)
     {
-        a.push(b[i]);
+        A.push(Ch[i]);
     }
-    while(!a.empty())
+    for (int i = 0; i < Ch.size(); i++)
     {
-        c.push_back(a.top());
-        a.pop();
+        char Temp = A.top();
+        A.pop();
+        cout << Temp;
     }
-    for(int i=0;i<c.size();i++)
-    {
-        cout<<c[i]; 
-    }
+    cout << endl;
+
     return 0;
 }

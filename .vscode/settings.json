@@ -8,6 +8,10 @@
         "type_traits": "cpp",
         "vector": "cpp",
         "string": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "compare": "cpp",
+        "new": "cpp",
+        "typeinfo": "cpp",
+        "istream": "cpp"
     }
 }

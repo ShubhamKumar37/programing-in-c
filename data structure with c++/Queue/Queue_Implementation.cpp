@@ -1,4 +1,6 @@
 #include<IOSTREAM>
+#include<SET>
+#include<STACK>
 
 using namespace std;
 
@@ -28,6 +30,17 @@ class Queue
 
 int main()
 {
+    // stack<set<int>> F;
+    // set<int> P={1,2,3,4,5,6,7,8,8};
+    // F.push(P);
+    // P=F.top();
+    // for(auto i : P)
+    // {
+    //     cout<<i<<" ";
+    // }
+    // cout<<endl;
+
+
     Queue <int> A(4);
     cout<<A.Empty()<<endl;
     cout<<A.Full()<<endl;

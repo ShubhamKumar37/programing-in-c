@@ -1,6 +1,6 @@
-#include<IOSTREAM>
-#include<SET>
-#include<STACK>
+#include <IOSTREAM>
+#include <SET>
+#include <STACK>
 
 using namespace std;
 
@@ -9,14 +9,15 @@ template <class Type>
 #define T template <class Type>
 class Queue
 {
-    Type *Arr,F,B,Size;
-    public:
+    Type *Arr, F, B, Size;
+
+public:
     Queue(Type Size)
     {
-        this->Size=Size;
-        Arr=new Type[Size];
-        F=0;
-        B=0;
+        this->Size = Size;
+        Arr = new Type[Size];
+        F = 0;
+        B = 0;
     }
     Type Pop(void);
     Type Back(void);
@@ -25,7 +26,6 @@ class Queue
     bool Empty(void);
     bool Full(void);
     void Push(Type Data);
-
 };
 
 int main()
@@ -40,10 +40,9 @@ int main()
     // }
     // cout<<endl;
 
-
-    Queue <int> A(4);
-    cout<<A.Empty()<<endl;
-    cout<<A.Full()<<endl;
+    Queue<int> A(4);
+    cout << A.Empty() << endl;
+    cout << A.Full() << endl;
     A.Push(10);
     A.Push(20);
     // A.Pop();
@@ -55,52 +54,52 @@ int main()
     // A.Push(50);
 
     // cout<<A.Pop()<<endl;
-    cout<<A.Empty()<<endl;
-    cout<<A.Full()<<endl;
-    cout<<A.Length()<<endl;
+    cout << A.Empty() << endl;
+    cout << A.Full() << endl;
+    cout << A.Length() << endl;
 
     return 0;
 }
 
-T int Queue<Type> :: Length(void)
+T int Queue<Type>::Length(void)
 {
-    return B-F;
+    return B - F;
 }
 
-T void Queue<Type> :: Push(Type Data)
+T void Queue<Type>::Push(Type Data)
 {
-    if(Full())
+    if (Full())
     {
-        cout<<"You cann't push new element queue is full !! "<<endl;
+        cout << "You cann't push new element queue is full !! " << endl;
     }
     else
     {
-        Arr[B++]=Data;
-        cout<<"Push done "<<endl;
+        Arr[B++] = Data;
+        cout << "Push done " << endl;
     }
 }
 
-T bool Queue<Type> :: Full(void)
+T bool Queue<Type>::Full(void)
 {
-    if(B==Size)
+    if (B == Size)
     {
         return true;
     }
     return false;
 }
 
-T bool Queue<Type> :: Empty(void)
+T bool Queue<Type>::Empty(void)
 {
-    if(F==B)
+    if (F == B)
     {
         return true;
     }
     return false;
 }
 
-T Type Queue<Type> :: Front(void)
+T Type Queue<Type>::Front(void)
 {
-    if(Empty())
+    if (Empty())
     {
         return -1;
     }
@@ -111,9 +110,9 @@ T Type Queue<Type> :: Front(void)
     }
 }
 
-T Type Queue<Type> :: Back(void)
+T Type Queue<Type>::Back(void)
 {
-    if(Empty())
+    if (Empty())
     {
         return -1;
     }
@@ -124,19 +123,19 @@ T Type Queue<Type> :: Back(void)
     }
 }
 
-T Type Queue <Type> :: Pop(void) // You have to specify the data type of class too;
+T Type Queue<Type>::Pop(void) // You have to specify the data type of class too;
 {
-    if(Empty())
+    if (Empty())
     {
         return -1;
     }
     else
     {
-        int Val=Arr[F];
-        Arr[F++]=-1;
-        if(F==B)
+        int Val = Arr[F];
+        Arr[F++] = -1;
+        if (F == B)
         {
-            F=0,B=0;
+            F = 0, B = 0;
         }
         return Val;
     }

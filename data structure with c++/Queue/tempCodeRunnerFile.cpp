@@ -1,3 +1,2 @@
-.back()<< endl;
-    cout<< A.size()<< endl;
-    cout<< A
+ty()<<endl;
+    cout<<A.Ful

@@ -36,10 +36,19 @@ int main()
 
 using namespace std;
 
+void get(void)
+{
+    cout<<"Running "<<endl;
+}
+
 class base
 {
     int salary;
     public:
+    void sum1(void)
+    {
+        get();
+    }
     void setdata(int a)
     {
         salary=a;
@@ -55,6 +64,7 @@ void base:: printsal(void)
 int main()
 {
     base a;
+    a.sum1();
     a.setdata(23423);
     a.printsal();
     return 0;

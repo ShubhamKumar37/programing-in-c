@@ -1,1 +1,2 @@
-mp;
+>data;
+    //     if (this->next !=

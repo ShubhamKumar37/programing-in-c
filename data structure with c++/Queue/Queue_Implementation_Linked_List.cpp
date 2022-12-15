@@ -1,43 +1,45 @@
 #include <IOSTREAM>
 
 using namespace std;
-
-template <class Type>
-#define T template <class Type = int>
-
+// template <typename Type> class Queue;
+template <typename Type>
 class Node
 {
 public:
     Type data;
-    Node<Type> *next;
-    Node() {}
-    Node(Type data)
-    {
-        this->data = data;
-        this->next = NULL;
-    }
+    Node<Type> *next = NULL;
+    template <typename T>
+    friend class Queue;
 
-    ~Node()
-    {
-        int Val = this->data;
-        cout << "Deleted node have data = " << Val << endl;
-    }
+    // ~Node()
+    // {
+    //     int Val = this->data;
+    //     if (this->next != NULL)
+    //     {
+    //         delete next;
+    //         this->next = NULL;
+    //     }
+    //     cout << "Deleted node have data = " << Val << endl;
+    // }
 };
-T void Insert(Node<Type> *&Head, Type d);
 
-T class Queue : public Node<Type>
+template <typename Type>
+class Queue
 {
-    Type F = 0, B = 0;
-    Node<Type> *Head = NULL;
-
 public:
+    Node<Type> *Head = NULL;
+    Node<Type> *Tail = NULL;
+
     Queue() {}
-    Queue(int data)
+    Queue(Type data)
     {
-        Insert(Head, data);
+        Node<Type> *Temp = new Node<Type>[1];
+        Temp->data = data;
+        Head = Temp;
+        Tail = Temp;
+        cout << "Done" << endl;
     }
 
-    Node<Type> *Get_Head(void) { return Head; }
     Type Pop(void);
     Type Back(void);
     Type Front(void);
@@ -49,38 +51,71 @@ public:
 
 int main()
 {
+    int *Pre = NULL;
     Queue<int> A(50);
-    Node<int> *Head = A.Get_Head();
+    A.Push(30);
+    // A.Push(10);
+    // A.Pop();
+    // A.Pop();
+    A.Pop();
+    A.Pop();
+    A.Pop();
 
-    cout << Head->data << endl;
+    // cout<<A.Head->data<<endl;
+    // cout<<A.Tail->data<<endl;
+    // cout<<A.Head->next->next<<endl;
+
     return 0;
 }
-T void Insert(Node<Type> *&Head, Type d)
+
+template <typename Type>
+void Queue<Type>::Push(Type Data)
 {
-    Node<Type> *Temp = new Node<Type>(d);
+    Node<Type> *Temp = new Node<Type>[1];
+    Temp->data = Data;
+    cout << "Done2" << endl;
     if (Head == NULL)
     {
         Head = Temp;
-        cout << "Done" << endl;
+        Tail = Temp;
         return;
     }
-    Temp->next = Head;
-    Head = Temp;
+    else
+    {
+        Tail->next = Temp;
+        Tail = Temp;
+    }
 }
 
-T Type Delete(Node<Type> *Head)
+template <typename Type>
+Type Queue<Type>::Pop(void)
 {
-    if (Head == NULL || Head->next == NULL)
+    if (Head == NULL || Tail == NULL)
     {
-        return Head == NULL ? NULL : Head->data;
+        cout << "You cann't pop as the queue is empty " << endl;
+        return -1;
     }
+    else
+    {
+        Node<Type> *Temp = Head;
+        Type Ans = Temp->data;
+        if (Temp->next == NULL)
+        {
+            Head = NULL;
+            Tail = NULL;
+            cout << "Before1" << endl;
+            Temp->next = NULL;
+            delete Temp;
+            cout << "After1" << endl;
+            return Ans;
+        }
 
-    Node<Type> *Temp = Head;
-    while (Temp->next->next != NULL)
-    {
-        Temp = Temp->next;
+        Head = Head->next;
+
+        Temp->next = NULL;
+        cout << "Before" << endl;
+        delete Temp;
+        cout << "After" << endl;
+        return Ans;
     }
-    Node<Type> *T_Delete = Temp->next;
-    Temp->next = NULL;
-    return T_Delete->data;
 }

@@ -18,5 +18,8 @@ int main()
     cout<<A.front()<<endl;
     cout<<A.back()<<endl;
 
+    cout<<A.size()<<endl;
+    cout<<A.max_size()<<endl;
+
     return 0;
 }

@@ -1,2 +1,2 @@
->data;
-    //     if (this->next !=
+   cout<<A.front()<<endl;
+ 

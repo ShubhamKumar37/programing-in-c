@@ -12,6 +12,7 @@
         "compare": "cpp",
         "new": "cpp",
         "typeinfo": "cpp",
-        "istream": "cpp"
+        "istream": "cpp",
+        "deque": "cpp"
     }
 }

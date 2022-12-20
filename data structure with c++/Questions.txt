@@ -1,0 +1,2 @@
+Implement N stack in array.
+Implement N Queue in array.

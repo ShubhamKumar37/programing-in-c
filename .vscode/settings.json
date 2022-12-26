@@ -13,6 +13,7 @@
         "new": "cpp",
         "typeinfo": "cpp",
         "istream": "cpp",
-        "deque": "cpp"
+        "deque": "cpp",
+        "xstring": "cpp"
     }
 }

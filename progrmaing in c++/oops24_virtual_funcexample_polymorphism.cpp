@@ -42,13 +42,13 @@ public:
     {
         this->food = food;
     }
-    /*  void display(void)
-     {
-         cout << "Shop number is " << no << endl;
-         cout << "Name of the shop is " << name << endl;
-         cout << "Type of food we sell is " << food << endl
-              << endl;
-     }  */
+    void display(void)
+    {
+        cout << "Shop number is " << no << endl;
+        cout << "Name of the shop is " << name << endl;
+        cout << "Type of food we sell is " << food << endl
+             << endl;
+    }
 };
 
 int main()

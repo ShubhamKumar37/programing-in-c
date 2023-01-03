@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selectors</title>
+    <style>
+        /* class selector */
+        .Bg_Color
+        {
+            background-color: orangered;
+            font: 25;
+            font-weight: bold;
+        }
+        /* id selector */
+        #F_Color
+        {
+            color: blue;
+            border: 4px solid green;
+        }
+        /* element selector or grouping selector (if use more than 1) */
+        div
+        {
+            font-size: 30px;
+        }  
+    </style>
+</head>
+<body>
+    <h1>This page is for selector in html</h1>
+
+    <p class="Bg_Color">This is text written using .Bg_Color class because of using class in CSS it should be defined in head using style adding "."</p>
+    <p id="F_Color">This is text written using #F_Color id because of using id in CSS it should be defined in head using style adding "#" </p>
+    <div><p>This is element selector in which name of element is given in CSS style in head</p></div>
+    <div><p>Also using more than 1 name of tag in style makes it grouping selector</p></div>
+</body>
+</html>

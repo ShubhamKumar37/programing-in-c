@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floats</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container
+        {
+            width: 900px;
+            border: 5px solid blue;
+            margin: 50px auto;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;
+        }
+
+        .Item
+        {
+            border: 5px solid black;
+            margin: 15px 4px;
+            padding:15px 4px;
+            background-color: aqua;
+        }
+
+        #Div_1
+        {
+            float:left;
+            width: 49%;
+        }
+        #Div_2
+        {
+            float:left;
+            width: 49%;
+            
+        }
+        #Div_3
+        {
+            /* float:left; */
+            clear: both;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="Div_1" class="Item">
+            <h2>This is heading of random words</h2>
+            <p id="Div_1_Para" class="Para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio reiciendis quae, nesciunt aut ducimus rem impedit esse. Odio asperiores exercitationem ut esse eligendi delectus ea magnam omnis itaque facilis. Eaque.</p>
+        </div>
+
+        <div id="Div_2" class="Item">
+            <h2>This is heading of random words</h2>
+            <p id="Div_2_Para" class="Para">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo fugiat id similique inventore dolore. Dolor, sapiente excepturi corrupti repellat ipsa harum obcaecati porro modi quos ipsum eos. Ea commodi libero, hic veniam recusandae optio voluptatibus ullam reprehenderit, quibusdam omnis doloribus. ipsum dolor sit amet consectetur adipisicing elit. Distinctio reiciendis quae, nesciunt aut ducimus rem impedit esse. Odio asperiores exercitationem ut esse eligendi delectus ea magnam omnis itaque facilis. Eaque.</p>
+        </div>
+        
+        <div id="Div_3" class="Item">
+            <h2>This is heading of random words</h2>
+            <p id="Div_3_Para" class="Para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio reiciendis quae, nesciunt aut ducimus rem impedit esse. Odio asperiores exercitationem ut esse eligendi delectus ea magnam omnis itaque facilis. Eaque.</p>
+        </div>
+    </div>
+</body>
+</html>

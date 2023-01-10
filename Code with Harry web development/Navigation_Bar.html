@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation bar</title>
+    <style>
+        .Nav_Bar
+        {
+            background-color: aqua;
+            border-radius: 30px ;
+        }
+
+        .Nav_Bar li
+        {
+            font-weight: bold;
+            float: left;
+            list-style: none;
+            padding-left: 80px;
+            padding-top: 5px;
+            padding-bottom: 6px;
+        }
+
+        .Nav_Bar ul
+        {
+            overflow: hidden;
+            padding-top: 3px;
+        }
+
+        .Search
+        {
+            float: right;
+            padding: 5px 20px;
+            padding-left: 5px;
+        }
+
+        #Srh
+        {
+            color: red;
+            float:left;
+            padding-left: 478px;
+            padding-top: 7px;
+
+        }
+        .Nav_Bar input
+        {
+            border:3px solid blue;
+            border-radius: 30px;
+            padding: 3px 11px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <head>
+        <nav class="Nav_Bar">
+            <ul>
+                <a href="https://www.google.com" target="_blank"><li>Home</li></a>
+                <a href="https://www.facebook.com" target="_blank"><li>Rate us</li></a>
+                <a href="https://www.geeksforgeeks.com" target="_blank"><li>Contact us</li></a>
+                <a href="https://www.netflix.com" target="_blank"><li>Buy Product</li></a>
+                <li id="Srh">Search :</li>
+                <div class="Search">
+                    <input type="text" placeholder="Search Here">
+                </div>
+            </ul>
+        </nav>
+    </head>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display property</title>
+    <style>
+        .Top {
+            border: solid green;
+            margin: auto;
+            width: 1200px;
+            text-align: center;
+        }
+        
+        img {
+            border: solid red;
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            display: block;
+            /*img is inline elements so it have to be changed to block element for applying margin auto*/
+        }
+        
+        .box {
+            border: solid red;
+            background-color: rgb(185, 233, 185);
+            width: 33%;
+            box-sizing: border-box;
+            display: inline-block;
+        }
+        
+        .container
+        {
+            border: solid green;
+            margin: auto;
+            width: 1200px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="Top">
+        <img src="https://media.istockphoto.com/id/157334938/es/foto/pistola-con-trazado-de-recorte.jpg?s=2048x2048&w=is&k=20&c=dk4pOntzuLbWkR-crJZEX2faIY0Fcg28TfPQ8m8Bd64="
+            alt="Image of gun">
+        <h3>This is a heading</h3>
+    </header>
+    <div class="container">
+        <div class="box">
+            <div>
+                <h2>This is a heading</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio dolorum reprehenderit quae soluta!
+                    Earum, similique asperiores. Placeat corporis praesentium veniam ducimus odio ullam expedita? Quod
+                    ipsum mollitia dolorum id eligendi.</p>
+            </div>
+        </div>
+        <div class="box">
+            <div>
+                <h2>This is a heading</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio dolorum reprehenderit quae soluta!
+                    Earum, similique asperiores. Placeat corporis praesentium veniam ducimus odio ullam expedita? Quod
+                    ipsum mollitia dolorum id eligendi.</p>
+            </div>
+        </div>
+        <div class="box">
+            <div>
+                <h2>This is a heading</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio dolorum reprehenderit quae soluta!
+                    Earum, similique asperiores. Placeat corporis praesentium veniam ducimus odio ullam expedita? Quod
+                    ipsum mollitia dolorum id eligendi.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

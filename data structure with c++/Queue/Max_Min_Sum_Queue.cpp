@@ -24,7 +24,7 @@ int Max_Min_Sum(int *Arr, int N, int K)
         Mini.push_back(i);
     }
 
-    Sum += Arr[Maxi.front()] - Arr[Mini.front()];
+    Sum += Arr[Maxi.front()] + Arr[Mini.front()];
     // cout << Arr[Maxi.front()] << " " << Arr[Mini.front()] << endl;
 
     for (int i = K; i < N; i++)
@@ -51,7 +51,7 @@ int Max_Min_Sum(int *Arr, int N, int K)
         Maxi.push_back(i);
         Mini.push_back(i);
 
-        Sum += Arr[Maxi.front()] - Arr[Mini.front()];
+        Sum += Arr[Maxi.front()] + Arr[Mini.front()];
         // cout << Arr[Maxi.front()] << " " << Arr[Mini.front()] << endl;
     }
 

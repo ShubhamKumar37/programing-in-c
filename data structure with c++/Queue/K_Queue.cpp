@@ -155,3 +155,80 @@ int main()
 //         return Arr[Ind];
 //     }
 // };
+
+#include <bits/stdc++.h> 
+class NQueue{
+public:
+    // Initialize your data structure.
+    int *Arr;
+    int *Next;
+    int *Front;
+    int *Rear;
+    int Free_Spot;
+    int Size;
+
+    NQueue(int n, int s){
+        // Write your code here.
+        Size = s;
+        Arr = new int[Size];
+        Next = new int[Size];
+        Front = new int[n];
+        rear = new int[n];
+
+        for(int i=0; i<Size; i++)
+        {
+            Next[i] = i + 1;
+        }
+        Next[Size - 1] = -1;
+
+        for(int i=0; i<n; i++)
+        {
+            Front[i] = -1;
+            Rear[i] = -1;
+        }
+    }
+
+    // Enqueues 'X' into the Mth queue. Returns true if it gets pushed into the queue, and false otherwise.
+    bool enqueue(int x, int m){
+        // Write your code here.
+        if(Free_Spot == -1)
+        {
+            return false;
+        }
+
+        int Ind = Free_Spot;
+        Free_Spot = Next[Ind];
+
+        if(Front[m - 1] == -1)
+        {
+            Front[m - 1] = Ind;
+        }
+        else
+        {
+            Next[Rear[m - 1]] = Ind;
+        }
+
+        Next[Ind] = -1;
+        Rear[m - 1] = Ind;
+        Arr[Ind] = x;
+
+        return true;
+    }
+
+
+    // Dequeues top element from Mth queue. Returns -1 if the queue is empty, otherwise returns the popped element.
+    int dequeue(int m){
+        // Write your code here.
+        if(Front[m - 1] == -1)
+        {
+            return -1;
+        }
+
+        int Ind = Front[m - 1];
+        Front[m - 1] = Next[Ind];
+        Next[Ind] = Free_Spot;
+        Free_Spot = Ind;
+
+        return Arr[Ind];
+    }
+};

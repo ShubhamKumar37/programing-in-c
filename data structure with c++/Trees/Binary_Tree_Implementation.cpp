@@ -19,28 +19,65 @@ public:
 };
 
 Root *Build_Binary_Tree(Root *R);
+Root *Build_Level_Order(void);
 void Level_Order_Traversal(Root *R);
 void Pre_Oreder_Traversal(Root *R);
 void In_Oreder_Traversal(Root *R);
 void Post_Oreder_Traversal(Root *R);
 
+
 // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
+// 1 3 5 7 11 17 -1 -1 -1 -1 -1 -1 -1
 int main()
 {
     Root *R = NULL;
 
-    R = Build_Binary_Tree(R);
+    // R = Build_Binary_Tree(R);
+    R = Build_Level_Order();
     cout << endl;
     Level_Order_Traversal(R);
-    cout << endl;
-    cout << "Preordered traversal = " << endl;
-    Pre_Oreder_Traversal(R);
+    // cout << endl;
+    // cout << "Preordered traversal = " << endl;
+    // Pre_Oreder_Traversal(R);
     // cout << endl;
     // In_Oreder_Traversal(R);
     // cout << endl;
     // Post_Oreder_Traversal(R);
 
     return 0;
+}
+
+Root *Build_Level_Order(void)
+{
+    int Data;
+    queue<Root*> Q;
+    cout << "Enter the data for root node = ";
+    cin >> Data;
+    Root *R = new Root(Data);
+    Q.push(R);
+    
+    while(!Q.empty())
+    {
+        Root *Temp = Q.front();
+        Q.pop();
+        cout << "Enter the data for left subtree = ";
+        cin >> Data;
+        if(Data != -1)
+        {
+            Temp -> Left = new Root(Data);
+            Q.push(Temp -> Left);
+        }
+
+        cout << "Enter the data for right subtree = ";
+        cin >> Data;
+        if(Data != -1)
+        {
+            Temp -> Right = new Root(Data);
+            Q.push(Temp -> Right);
+        }
+    }
+
+    return R;
 }
 
 void Pre_Oreder_Traversal(Root *R)
@@ -129,10 +166,10 @@ Root *Build_Binary_Tree(Root *R)
         return NULL;
     }
 
-    cout << "Enter the data for left skewed of " << Data << endl;
+    cout << "Enter the data for left subtree of " << Data << endl;
     Node->Left = Build_Binary_Tree(Node);
 
-    cout << "Enter the data for right skewed of " << Data << endl;
+    cout << "Enter the data for right subtree of " << Data << endl;
     Node->Right = Build_Binary_Tree(Node);
 
     return Node;

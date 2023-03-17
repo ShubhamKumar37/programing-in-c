@@ -1,5 +1,6 @@
 #include <iostream>
 #include <QUEUE>
+#include <VECTOR>
 
 using namespace std;
 
@@ -123,6 +124,36 @@ void Level_Order_Traversal(Root *R)
     }
 
     queue<Root *> Q;
+    Q.push(R);
+    vector<int> Ans;
+
+    while(!Q.empty())
+    {
+        for(int i=0; i<Q.size(); i++)
+        {
+            Root* Front = Q.front();
+            Q.pop();
+
+            Ans.push_back(Front -> Data);
+
+            if(Front -> Left)
+            {
+                Q.push(Front -> Left);
+            }
+            if(Front -> Right)
+            {
+                Q.push(Front -> Right);
+            }
+        }
+    }
+
+    for(auto i : Ans)
+    {
+        cout << i << " ";
+    }
+    cout << endl;
+
+    
     Q.push(R);
     Q.push(NULL);
 

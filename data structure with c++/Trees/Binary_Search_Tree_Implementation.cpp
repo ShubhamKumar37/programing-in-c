@@ -124,6 +124,25 @@ void Preorder_Traversal(Node *root)
     Preorder_Traversal(root->right);
 }
 
+void Min_Max_Tree(Node *root)
+{
+    Node *Temp = root;
+
+    while(Temp -> left != NULL)
+    {
+        Temp = Temp -> left;
+    }
+    cout << "Minimum value in tree is " << Temp -> Data << endl;
+    
+    Temp = root;
+
+    while(Temp -> right != NULL)
+    {
+        Temp = Temp -> right;
+    }
+    cout << "Maximum value in tree is " << Temp -> Data << endl;
+}
+
 int main()
 {
     Node *root = NULL;
@@ -138,6 +157,9 @@ int main()
     Inorder_Traversal(root);
     cout << endl;
     Postorder_Traversal(root);
+    cout << endl;
+
+    Min_Max_Tree(root);
 
     return 0;
 }

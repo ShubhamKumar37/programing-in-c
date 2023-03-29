@@ -1,5 +1,5 @@
-#include<IOSTREAM>
-#include<QUEUE>
+#include <IOSTREAM>
+#include <QUEUE>
 
 using namespace std;
 
@@ -12,7 +12,7 @@ public:
 
     Node(int Data)
     {
-        this -> Data = Data;
+        this->Data = Data;
         left = NULL;
         right = NULL;
     }
@@ -20,19 +20,19 @@ public:
 
 void Insert_BST(Node *&root, int Data)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
         root = new Node(Data);
-        return ;
+        return;
     }
 
-    if(Data < root -> Data)
+    if (Data < root->Data)
     {
-        Insert_BST(root -> left, Data);
+        Insert_BST(root->left, Data);
     }
     else
     {
-        Insert_BST(root -> right, Data);
+        Insert_BST(root->right, Data);
     }
 }
 
@@ -42,7 +42,7 @@ void Create_BST(Node *&root)
     cout << "Enter the data = ";
     cin >> Data;
 
-    while(Data != -1)
+    while (Data != -1)
     {
         Insert_BST(root, Data);
         cin >> Data;
@@ -51,38 +51,38 @@ void Create_BST(Node *&root)
 
 void Level_Order_Traversal(Node *root)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
-        return ;
+        return;
     }
 
-    queue<Node*> Ans;
+    queue<Node *> Ans;
     Ans.push(root);
     Ans.push(NULL);
 
-    while(!Ans.empty())
+    while (!Ans.empty())
     {
-        Node* Front = Ans.front();
+        Node *Front = Ans.front();
         Ans.pop();
 
-        if(Front == NULL)
+        if (Front == NULL)
         {
-            cout<<endl;
-            if(!Ans.empty())
+            cout << endl;
+            if (!Ans.empty())
             {
                 Ans.push(NULL);
             }
         }
         else
         {
-            cout<<Front -> Data<<" ";
-            if(Front -> left)
+            cout << Front->Data << " ";
+            if (Front->left)
             {
-                Ans.push(Front -> left);
+                Ans.push(Front->left);
             }
-            if(Front -> right)
+            if (Front->right)
             {
-                Ans.push(Front -> right);
+                Ans.push(Front->right);
             }
         }
     }
@@ -90,52 +90,53 @@ void Level_Order_Traversal(Node *root)
 
 void Inorder_Traversal(Node *root)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
-        return ;
+        return;
     }
 
-    Inorder_Traversal(root -> left);
-    cout << root -> Data << " ";
-    Inorder_Traversal(root -> right);
+    Inorder_Traversal(root->left);
+    cout << root->Data << " ";
+    Inorder_Traversal(root->right);
 }
+
 void Postorder_Traversal(Node *root)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
-        return ;
+        return;
     }
 
-    Postorder_Traversal(root -> left);
-    Postorder_Traversal(root -> right);
-    cout << root -> Data << " ";
+    Postorder_Traversal(root->left);
+    Postorder_Traversal(root->right);
+    cout << root->Data << " ";
 }
 
 void Preorder_Traversal(Node *root)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
-        return ;
+        return;
     }
 
-    cout << root -> Data << " ";
-    Preorder_Traversal(root -> left);
-    Preorder_Traversal(root -> right);
+    cout << root->Data << " ";
+    Preorder_Traversal(root->left);
+    Preorder_Traversal(root->right);
 }
 
 int main()
 {
-    Node* root = NULL;
+    Node *root = NULL;
 
     Create_BST(root);
-    //7 2 4 5 0 1 -1
+    // 7 2 4 5 0 1 -1
 
     Level_Order_Traversal(root);
-    cout<<endl;
+    cout << endl;
     Preorder_Traversal(root);
-    cout<<endl;
+    cout << endl;
     Inorder_Traversal(root);
-    cout<<endl;
+    cout << endl;
     Postorder_Traversal(root);
 
     return 0;

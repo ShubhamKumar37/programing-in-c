@@ -143,6 +143,60 @@ void Min_Max_Tree(Node *root)
     cout << "Maximum value in tree is " << Temp -> Data << endl;
 }
 
+void Inorder_Successor(Node *root, int Val)
+{
+    if(root == NULL)
+    {
+        cout << "There is no successor" << endl;
+        return ;
+    }
+
+    int Ele = -1;
+    Node* Temp = root;
+    
+    while(Temp != NULL)
+    {
+        if(Temp -> Data > Val)
+        {
+            Ele = Temp -> Data;
+            Temp = Temp -> left;
+        }
+        else
+        {
+            Temp = Temp -> right;
+        }
+    }
+
+    cout << "Indorder successor of " << Val << " is " << Ele << endl;
+}
+
+void Indorder_Predecessor(Node *root, int Val)
+{
+    if(root == NULL)
+    {
+        cout << "There is no Inorder predecessor" << endl;
+        return ;
+    }
+
+    Node *Temp = root;
+    int Ele = -1;
+
+    while(Temp != NULL)
+    {
+        if(Val > Temp -> Data)
+        {
+            Ele = Temp -> Data;
+            Temp = Temp -> right;
+        }
+        else
+        {
+            Temp = Temp -> left;
+        }
+    }
+
+    cout << "Inroder predecessor of " << Val << " is " << Ele << endl; 
+}
+
 int main()
 {
     Node *root = NULL;
@@ -160,6 +214,9 @@ int main()
     cout << endl;
 
     Min_Max_Tree(root);
+
+    Inorder_Successor(root, 4);
+    Indorder_Predecessor(root, 4);
 
     return 0;
 }

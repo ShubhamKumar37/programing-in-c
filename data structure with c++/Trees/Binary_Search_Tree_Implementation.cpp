@@ -18,6 +18,62 @@ public:
     }
 };
 
+void Insert_BST(Node *&root, int Data);
+void Create_BST(Node *&root);
+void Level_Order_Traversal(Node *root);
+void Inorder_Traversal(Node *root);
+void Postorder_Traversal(Node *root);
+void Preorder_Traversal(Node *root);
+void Min_Max_Tree(Node *root);
+void Inorder_Successor(Node *root, int Val);
+void Inorder_Predecessor(Node *root, int Val);
+Node* Max_Tree(Node *root);
+Node* Min_Tree(Node *root);
+Node* Delete_Node(Node *root, int Val);
+
+
+int main()
+{
+    Node *root = NULL;
+
+    Create_BST(root);
+    // 7 2 4 5 0 1 -1
+
+    Level_Order_Traversal(root);
+    cout << endl;
+    Preorder_Traversal(root);
+    cout << endl;
+    Inorder_Traversal(root);
+    cout << endl;
+    Postorder_Traversal(root);
+    cout << endl;
+
+    Min_Max_Tree(root);
+
+    Inorder_Successor(root, 7);
+    Inorder_Predecessor(root, 4);
+
+    root = Delete_Node(root, 7);
+
+    Level_Order_Traversal(root);
+    cout << endl;
+    Preorder_Traversal(root);
+    cout << endl;
+    Inorder_Traversal(root);
+    cout << endl;
+    Postorder_Traversal(root);
+    cout << endl;
+
+    Min_Max_Tree(root);
+
+    Inorder_Successor(root, 7);
+    Inorder_Predecessor(root, 4);
+
+    return 0;
+}
+
+
+
 void Insert_BST(Node *&root, int Data)
 {
     if (root == NULL)
@@ -124,6 +180,7 @@ void Preorder_Traversal(Node *root)
     Preorder_Traversal(root->right);
 }
 
+
 void Min_Max_Tree(Node *root)
 {
     Node *Temp = root;
@@ -141,6 +198,27 @@ void Min_Max_Tree(Node *root)
         Temp = Temp -> right;
     }
     cout << "Maximum value in tree is " << Temp -> Data << endl;
+}
+Node* Max_Tree(Node *root)
+{
+    Node *Temp = root;
+
+    while(Temp -> right != NULL)
+    {
+        Temp = Temp -> right;
+    }
+    return Temp;
+}
+
+Node* Min_Tree(Node *root)
+{
+    Node *Temp = root;
+
+    while(Temp -> left != NULL)
+    {
+        Temp = Temp -> left;
+    }
+    return Temp;
 }
 
 void Inorder_Successor(Node *root, int Val)
@@ -170,7 +248,7 @@ void Inorder_Successor(Node *root, int Val)
     cout << "Indorder successor of " << Val << " is " << Ele << endl;
 }
 
-void Indorder_Predecessor(Node *root, int Val)
+void Inorder_Predecessor(Node *root, int Val)
 {
     if(root == NULL)
     {
@@ -197,26 +275,48 @@ void Indorder_Predecessor(Node *root, int Val)
     cout << "Inroder predecessor of " << Val << " is " << Ele << endl; 
 }
 
-int main()
+Node* Delete_Node(Node *root, int Val)
 {
-    Node *root = NULL;
+    if(root == NULL)
+    {
+        return root;
+    }
 
-    Create_BST(root);
-    // 7 2 4 5 0 1 -1
+    cout<<"!!!!"<<endl;
+    if(root -> Data == Val)
+    {
+        if(root -> left == NULL && root -> right == NULL)
+        {
+            delete root;
+            return NULL;
+        }
+        if(root -> left != NULL && root -> right == NULL)
+        {
+            Node* Temp = root -> left;
+            delete root;
+            return Temp;
+        }
+        if(root -> left == NULL && root -> right != NULL)
+        {
+            Node* Temp = root -> right;
+            delete root;
+            return Temp;
+        }
+        if(root -> left != NULL && root -> right != NULL)
+        {
+            Node* Min_Node = Min_Tree(root -> right);
+            root -> Data = Min_Node -> Data;
+            root -> right = Delete_Node(root -> right, Min_Node -> Data);
+            return root;
+        }
+    }
 
-    Level_Order_Traversal(root);
-    cout << endl;
-    Preorder_Traversal(root);
-    cout << endl;
-    Inorder_Traversal(root);
-    cout << endl;
-    Postorder_Traversal(root);
-    cout << endl;
+    if(root -> Data > Val)
+    {
+        root -> left = Delete_Node(root -> left, Val);
+        return root;
+    }
 
-    Min_Max_Tree(root);
-
-    Inorder_Successor(root, 7);
-    Indorder_Predecessor(root, 4);
-
-    return 0;
+    root -> right = Delete_Node(root -> right, Val);
+    return root;
 }

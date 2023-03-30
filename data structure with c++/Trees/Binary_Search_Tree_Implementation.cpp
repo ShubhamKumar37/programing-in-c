@@ -1,5 +1,5 @@
-#include <IOSTREAM>
-#include <QUEUE>
+#include <iostream>
+#include <queue>
 
 using namespace std;
 
@@ -183,7 +183,7 @@ void Indorder_Predecessor(Node *root, int Val)
 
     while(Temp != NULL)
     {
-        if(Val > Temp -> Data)
+        if(Temp -> Data < Val)
         {
             Ele = Temp -> Data;
             Temp = Temp -> right;
@@ -215,7 +215,7 @@ int main()
 
     Min_Max_Tree(root);
 
-    Inorder_Successor(root, 4);
+    Inorder_Successor(root, 7);
     Indorder_Predecessor(root, 4);
 
     return 0;

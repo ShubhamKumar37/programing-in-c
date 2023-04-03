@@ -42,13 +42,13 @@ int main()
     Create_BST(root);
     // 7 2 4 5 0 1 -1
 
-    Morris_Traversal_Inorder(root);
-    cout << endl;
-    Morris_Traversal_Preorder(root);
-    cout << endl;
-    Morris_Traversal_Postorder(root);
+    // Morris_Traversal_Inorder(root);
     // cout << endl;
-    // Level_Order_Traversal(root);
+    // Morris_Traversal_Preorder(root);
+    // cout << endl;
+    // Morris_Traversal_Postorder(root);
+    // cout << endl;
+    Level_Order_Traversal(root);
     // cout << endl;
     // Preorder_Traversal(root);
     // cout << endl;

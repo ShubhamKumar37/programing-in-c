@@ -1,5 +1,6 @@
 #include <iostream>
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -27,10 +28,12 @@ void Preorder_Traversal(Node *root);
 void Min_Max_Tree(Node *root);
 void Inorder_Successor(Node *root, int Val);
 void Inorder_Predecessor(Node *root, int Val);
-Node* Max_Tree(Node *root);
-Node* Min_Tree(Node *root);
-Node* Delete_Node(Node *root, int Val);
-
+void Morris_Traversal_Preorder(Node *root);
+void Morris_Traversal_Inorder(Node *root);
+void Morris_Traversal_Postorder(Node *root);
+Node *Max_Tree(Node *root);
+Node *Min_Tree(Node *root);
+Node *Delete_Node(Node *root, int Val);
 
 int main()
 {
@@ -39,40 +42,171 @@ int main()
     Create_BST(root);
     // 7 2 4 5 0 1 -1
 
-    Level_Order_Traversal(root);
+    Morris_Traversal_Inorder(root);
     cout << endl;
-    Preorder_Traversal(root);
+    Morris_Traversal_Preorder(root);
     cout << endl;
-    Inorder_Traversal(root);
-    cout << endl;
-    Postorder_Traversal(root);
-    cout << endl;
+    Morris_Traversal_Postorder(root);
+    // cout << endl;
+    // Level_Order_Traversal(root);
+    // cout << endl;
+    // Preorder_Traversal(root);
+    // cout << endl;
+    // Inorder_Traversal(root);
+    // cout << endl;
+    // Postorder_Traversal(root);
+    // cout << endl;
 
-    Min_Max_Tree(root);
+    // Min_Max_Tree(root);
 
-    Inorder_Successor(root, 7);
-    Inorder_Predecessor(root, 4);
+    // Inorder_Successor(root, 7);
+    // Inorder_Predecessor(root, 4);
 
-    root = Delete_Node(root, 7);
+    // root = Delete_Node(root, 7);
 
-    Level_Order_Traversal(root);
-    cout << endl;
-    Preorder_Traversal(root);
-    cout << endl;
-    Inorder_Traversal(root);
-    cout << endl;
-    Postorder_Traversal(root);
-    cout << endl;
+    // Level_Order_Traversal(root);
+    // cout << endl;
+    // Preorder_Traversal(root);
+    // cout << endl;
+    // Inorder_Traversal(root);
+    // cout << endl;
+    // Postorder_Traversal(root);
+    // cout << endl;
 
-    Min_Max_Tree(root);
+    // Min_Max_Tree(root);
 
-    Inorder_Successor(root, 7);
-    Inorder_Predecessor(root, 4);
+    // Inorder_Successor(root, 7);
+    // Inorder_Predecessor(root, 4);
 
     return 0;
 }
 
+void Morris_Traversal_Preorder(Node *root)
+{
+    if (root == NULL)
+    {
+        cout << "Root is NULL" << endl;
+        return;
+    }
 
+    Node *Temp = root;
+
+    while (Temp != NULL)
+    {
+        if (Temp->left == NULL)
+        {
+            cout << Temp->Data << " ";
+            Temp = Temp->right;
+        }
+        else
+        {
+            Node *Pred = Temp->left;
+            while (Pred->right != NULL && Pred->right != Temp)
+            {
+                Pred = Pred->right;
+            }
+
+            if (Pred->right == NULL)
+            {
+                Pred->right = Temp;
+                cout << Temp->Data << " ";
+                Temp = Temp->left;
+            }
+            else
+            {
+                Pred->right = NULL;
+                Temp = Temp->right;
+            }
+        }
+    }
+}
+
+void Morris_Traversal_Inorder(Node *root)
+{
+    if (root == NULL)
+    {
+        cout << "Root is NULL" << endl;
+        return;
+    }
+
+    Node *Temp = root;
+    while (Temp != NULL)
+    {
+        if (Temp->left == NULL)
+        {
+            cout << Temp->Data << " ";
+            Temp = Temp->right;
+        }
+        else
+        {
+            Node *Pred = Temp->left;
+            while (Pred->right != NULL && Pred->right != Temp)
+            {
+                Pred = Pred->right;
+            }
+
+            if (Pred->right == NULL)
+            {
+                Pred->right = Temp;
+                Temp = Temp->left;
+            }
+            else
+            {
+                cout << Temp->Data << " ";
+                Pred->right = NULL;
+                Temp = Temp->right;
+            }
+        }
+    }
+}
+
+void Morris_Traversal_Postorder(Node *root)
+{
+    if (root == NULL)
+    {
+        cout << "Root is NULL" << endl;
+        return;
+    }
+
+    Node *Temp = root;
+    stack<int> S;
+
+    while (Temp != NULL)
+    {
+        if (Temp->right == NULL)
+        {
+            S.push(Temp->Data);
+            Temp = Temp->left;
+        }
+        else
+        {
+            Node *Pred = Temp->right;
+            while (Pred->left != NULL && Pred->left != Temp)
+            {
+                Pred = Pred->left;
+            }
+
+            if (Pred->left == NULL)
+            {
+                Pred->left = Temp;
+                S.push(Temp->Data);
+                Temp = Temp->right;
+            }
+            else
+            {
+                Pred->left = NULL;
+                Temp = Temp->left;
+            }
+        }
+    }
+
+    while (!S.empty())
+    {
+        int Val = S.top();
+        S.pop();
+        cout << Val << " ";
+    }
+}
 
 void Insert_BST(Node *&root, int Data)
 {
@@ -180,68 +314,67 @@ void Preorder_Traversal(Node *root)
     Preorder_Traversal(root->right);
 }
 
-
 void Min_Max_Tree(Node *root)
 {
     Node *Temp = root;
 
-    while(Temp -> left != NULL)
+    while (Temp->left != NULL)
     {
-        Temp = Temp -> left;
+        Temp = Temp->left;
     }
-    cout << "Minimum value in tree is " << Temp -> Data << endl;
-    
+    cout << "Minimum value in tree is " << Temp->Data << endl;
+
     Temp = root;
 
-    while(Temp -> right != NULL)
+    while (Temp->right != NULL)
     {
-        Temp = Temp -> right;
+        Temp = Temp->right;
     }
-    cout << "Maximum value in tree is " << Temp -> Data << endl;
+    cout << "Maximum value in tree is " << Temp->Data << endl;
 }
-Node* Max_Tree(Node *root)
+Node *Max_Tree(Node *root)
 {
     Node *Temp = root;
 
-    while(Temp -> right != NULL)
+    while (Temp->right != NULL)
     {
-        Temp = Temp -> right;
+        Temp = Temp->right;
     }
     return Temp;
 }
 
-Node* Min_Tree(Node *root)
+Node *Min_Tree(Node *root)
 {
     Node *Temp = root;
 
-    while(Temp -> left != NULL)
+    while (Temp->left != NULL)
     {
-        Temp = Temp -> left;
+        Temp = Temp->left;
     }
     return Temp;
 }
 
 void Inorder_Successor(Node *root, int Val)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
         cout << "There is no successor" << endl;
-        return ;
+        return;
     }
 
     int Ele = -1;
-    Node* Temp = root;
-    
-    while(Temp != NULL)
+    Node *Temp = root;
+
+    while (Temp != NULL)
     {
-        if(Temp -> Data > Val)
+        if (Temp->Data > Val)
         {
-            Ele = Temp -> Data;
-            Temp = Temp -> left;
+            Ele = Temp->Data;
+            Temp = Temp->left;
         }
         else
         {
-            Temp = Temp -> right;
+            Temp = Temp->right;
         }
     }
 
@@ -250,73 +383,73 @@ void Inorder_Successor(Node *root, int Val)
 
 void Inorder_Predecessor(Node *root, int Val)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
         cout << "There is no Inorder predecessor" << endl;
-        return ;
+        return;
     }
 
     Node *Temp = root;
     int Ele = -1;
 
-    while(Temp != NULL)
+    while (Temp != NULL)
     {
-        if(Temp -> Data < Val)
+        if (Temp->Data < Val)
         {
-            Ele = Temp -> Data;
-            Temp = Temp -> right;
+            Ele = Temp->Data;
+            Temp = Temp->right;
         }
         else
         {
-            Temp = Temp -> left;
+            Temp = Temp->left;
         }
     }
 
-    cout << "Inroder predecessor of " << Val << " is " << Ele << endl; 
+    cout << "Inroder predecessor of " << Val << " is " << Ele << endl;
 }
 
-Node* Delete_Node(Node *root, int Val)
+Node *Delete_Node(Node *root, int Val)
 {
-    if(root == NULL)
+    if (root == NULL)
     {
         return root;
     }
 
-    cout<<"!!!!"<<endl;
-    if(root -> Data == Val)
+    cout << "!!!!" << endl;
+    if (root->Data == Val)
     {
-        if(root -> left == NULL && root -> right == NULL)
+        if (root->left == NULL && root->right == NULL)
         {
             delete root;
             return NULL;
         }
-        if(root -> left != NULL && root -> right == NULL)
+        if (root->left != NULL && root->right == NULL)
         {
-            Node* Temp = root -> left;
+            Node *Temp = root->left;
             delete root;
             return Temp;
         }
-        if(root -> left == NULL && root -> right != NULL)
+        if (root->left == NULL && root->right != NULL)
         {
-            Node* Temp = root -> right;
+            Node *Temp = root->right;
             delete root;
             return Temp;
         }
-        if(root -> left != NULL && root -> right != NULL)
+        if (root->left != NULL && root->right != NULL)
         {
-            Node* Min_Node = Min_Tree(root -> right);
-            root -> Data = Min_Node -> Data;
-            root -> right = Delete_Node(root -> right, Min_Node -> Data);
+            Node *Min_Node = Min_Tree(root->right);
+            root->Data = Min_Node->Data;
+            root->right = Delete_Node(root->right, Min_Node->Data);
             return root;
         }
     }
 
-    if(root -> Data > Val)
+    if (root->Data > Val)
     {
-        root -> left = Delete_Node(root -> left, Val);
+        root->left = Delete_Node(root->left, Val);
         return root;
     }
 
-    root -> right = Delete_Node(root -> right, Val);
+    root->right = Delete_Node(root->right, Val);
     return root;
 }

@@ -93,6 +93,7 @@ void Morris_Traversal_Preorder(Node *root)
 
     while (Temp != NULL)
     {
+        
         if (Temp->left == NULL)
         {
             cout << Temp->Data << " ";
@@ -173,29 +174,29 @@ void Morris_Traversal_Postorder(Node *root)
 
     while (Temp != NULL)
     {
-        if (Temp->right == NULL)
+        if(Temp -> right == NULL)
         {
-            S.push(Temp->Data);
-            Temp = Temp->left;
+            S.push(Temp -> Data);
+            Temp = Temp -> left;
         }
         else
         {
-            Node *Pred = Temp->right;
-            while (Pred->left != NULL && Pred->left != Temp)
+            Node* Pred = Temp -> right;
+            while(Pred -> left != NULL && Pred -> left != Temp)
             {
-                Pred = Pred->left;
+                Pred = Pred -> left;
             }
 
-            if (Pred->left == NULL)
+            if(Pred -> left == NULL)
             {
-                Pred->left = Temp;
-                S.push(Temp->Data);
-                Temp = Temp->right;
+                Pred -> left = Temp;
+                S.push(Temp -> Data);
+                Temp = Temp -> right;
             }
             else
             {
-                Pred->left = NULL;
-                Temp = Temp->left;
+                Pred -> right = NULL;
+                Temp = Temp -> left;
             }
         }
     }

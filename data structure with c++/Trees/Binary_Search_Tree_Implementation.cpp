@@ -34,6 +34,7 @@ void Morris_Traversal_Postorder(Node *root);
 Node *Max_Tree(Node *root);
 Node *Min_Tree(Node *root);
 Node *Delete_Node(Node *root, int Val);
+Node* Flatten(Node* root);
 
 int main()
 {
@@ -42,13 +43,20 @@ int main()
     Create_BST(root);
     // 7 2 4 5 0 1 -1
 
+    Node* Ans = Flatten(root);
+    while(Ans != NULL)
+    {
+        cout<<Ans -> Data<< " ";
+        Ans = Ans -> right;
+    }
+
     // Morris_Traversal_Inorder(root);
     // cout << endl;
     // Morris_Traversal_Preorder(root);
     // cout << endl;
     // Morris_Traversal_Postorder(root);
     // cout << endl;
-    Level_Order_Traversal(root);
+    // Level_Order_Traversal(root);
     // cout << endl;
     // Preorder_Traversal(root);
     // cout << endl;
@@ -79,6 +87,37 @@ int main()
     // Inorder_Predecessor(root, 4);
 
     return 0;
+}
+
+Node* Flatten(Node* root)
+{
+    Node* Temp = root;
+    Node* Ans = NULL;
+    bool Root_Found = false;
+
+    while (Temp != NULL) {
+        if (Temp->left == NULL) {
+            if (Root_Found == false) {
+                Ans = Temp;
+                Root_Found = true;
+            }
+            Temp = Temp->right;
+        } else {
+            Node* Pred = Temp->left;
+            while (Pred->right != NULL && Pred->right != Temp) {
+                Pred = Pred->right;
+            }
+
+            if (Pred->right == NULL) {
+                Pred->right = Temp;
+                Temp = Temp->left;
+            } else {
+                Temp->left = NULL;
+                Temp = Temp->right;
+            }
+        }
+    }
+    return Ans;
 }
 
 void Morris_Traversal_Preorder(Node *root)

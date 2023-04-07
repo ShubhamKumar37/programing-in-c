@@ -21,11 +21,11 @@ public:
 
 Node *Build_Binary_Tree(Node *R);
 Node *Build_Level_Order(void);
-Node* Flatten(Node* root);
+void Flatten_Doubly_LL(Node* root, Node* &Prev, Node* &Head);
 void Level_Order_Traversal(Node *R);
-void Pre_Oreder_Traversal(Node *R);
-void In_Oreder_Traversal(Node *R);
-void Post_Oreder_Traversal(Node *R);
+void Pre_Order_Traversal(Node *R);
+void In_Order_Traversal(Node *R);
+void Post_Order_Traversal(Node *R);
 
 
 // 1 3 7 -1 -1 11 -1 -1 5 17 -1 -1 -1
@@ -38,54 +38,53 @@ int main()
     R = Build_Level_Order();
     cout << endl;
 
-    Node* Ans = Flatten(R);
-    while(Ans != NULL)
+    In_Order_Traversal(R);
+    cout << endl;
+    Node* Prev = NULL;
+    Node* Head = NULL;
+    Flatten_Doubly_LL(R, Prev, Head);
+    while(Head != NULL)
     {
-        cout<<Ans -> Data<< " ";
-        Ans = Ans -> Right;
+        cout<<Head -> Data<< " ";
+        Head = Head -> Right;
     }
+    // cout<<R->Data<<endl;
+    // cout<<R-> Left->Data<<endl;
+    // cout<<R-> Right->Data<<endl;
+    // cout<<R-> Left -> Right->Data<<endl;
     // Level_Order_Traversal(R);
     // cout << endl;
     // cout << "Preordered traversal = " << endl;
-    // Pre_Oreder_Traversal(R);
+    // Pre_Order_Traversal(R);
     // cout << endl;
-    // In_Oreder_Traversal(R);
-    // cout << endl;
-    // Post_Oreder_Traversal(R);
+    // cout<<R-> Data<<endl;
+    // Post_Order_Traversal(R);
 
     return 0;
 }
 
-Node* Flatten(Node* root)
+void Flatten_Doubly_LL(Node* root, Node* &Prev, Node* &Head)
 {
-    Node* Temp = root;
-    Node* Ans = NULL;
-    bool Root_Found = false;
-
-    while (Temp != NULL) {
-        if (Temp->Left == NULL) {
-            if (Root_Found == false) {
-                Ans = Temp;
-                Root_Found = true;
-            }
-            Temp = Temp->Right;
-        } else {
-            Node* Pred = Temp->Left;
-            while (Pred->Right != NULL && Pred->Right != Temp) {
-                Pred = Pred->Right;
-            }
-
-            if (Pred->Right == NULL) {
-                Pred->Right = Temp;
-                Temp = Temp->Left;
-            }
-            else {
-                Temp->Left = NULL;
-                Temp = Temp->Right;
-            }
-        }
+    if(root == NULL)
+    {
+        return ;
     }
-    return Ans;
+
+    Flatten_Doubly_LL(root -> Left, Prev, Head);
+
+    if(Prev == NULL)
+    {
+        Head = root;
+    }
+    else
+    {
+        Prev -> Right = root;
+        root -> Left = Prev;
+    }
+
+    Prev = root;
+
+    Flatten_Doubly_LL(root -> Right, Prev, Head);
 }
 
 Node *Build_Level_Order(void)
@@ -121,38 +120,38 @@ Node *Build_Level_Order(void)
     return R;
 }
 
-void Pre_Oreder_Traversal(Node *R)
+void Pre_Order_Traversal(Node *R)
 {
     if(R == NULL)
     {
         return ;
     }
-    Node *Temp = R;
-    cout << Temp -> Data << " ";
-    Level_Order_Traversal(Temp -> Left);
-    Level_Order_Traversal(Temp -> Right);
+
+    cout << R -> Data << " ";
+    Pre_Order_Traversal(R -> Left);
+    Pre_Order_Traversal(R -> Right);
 }
-void In_Oreder_Traversal(Node *R)
+void In_Order_Traversal(Node *R)
 {
     if(R == NULL)
     {
         return ;
     }
-    Node *Temp = R;
-    Level_Order_Traversal(Temp -> Left);
-    cout << Temp -> Data << " ";
-    Level_Order_Traversal(Temp -> Right);
+
+    In_Order_Traversal(R -> Left);
+    cout << R -> Data << " ";
+    In_Order_Traversal(R -> Right);
 }
-void Post_Oreder_Traversal(Node *R)
+void Post_Order_Traversal(Node *R)
 {
     if(R == NULL)
     {
         return ;
     }
-    Node *Temp = R;
-    Level_Order_Traversal(Temp -> Left);
-    Level_Order_Traversal(Temp -> Right);
-    cout << Temp -> Data << " ";
+
+    Post_Order_Traversal(R -> Left);
+    Post_Order_Traversal(R -> Right);
+    cout << R -> Data << " ";
 }
 
 void Level_Order_Traversal(Node *R) 
@@ -162,7 +161,7 @@ void Level_Order_Traversal(Node *R)
         cout << "Tree is empty!!" << endl;
         return ;
     }
-
+    cout<<"69696969"<<endl;
     queue<Node *> Q;
     Q.push(R);
     vector<int> Ans;

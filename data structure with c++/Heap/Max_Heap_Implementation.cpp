@@ -28,11 +28,11 @@ void Heapify(int *Arr, int n, int i)
     int Left = i * 2;
     int Right = i * 2 + 1;
 
-    if(Largest < n && Arr[Largest] < Arr[Left])
+    if(Left < n && Arr[Largest] < Arr[Left])
     {
         Largest = Left;
     }
-    else if(Largest < n && Arr[Largest] < Arr[Right])
+    else if(Right < n && Arr[Largest] < Arr[Right])
     {
         Largest = Right;
     }
@@ -63,20 +63,16 @@ int main()
     // cout<<A.Arr[0]<<endl;
     int Num[] = {-1, 54, 53, 55, 52, 50};
     int N = sizeof(Num) / sizeof(int);
-    // cout<<N<< endl;
 
     for(int i=N/2; i>0; i--)
     {
         Heapify(Num, N, i);
     }
-
-    cout<<Num[1]<<endl;
     
     for(int i=0; i<N; i++)
     {
         cout<<Num[i]<<" ";
     }
-    cout<<endl;
 
     return 0;
 }

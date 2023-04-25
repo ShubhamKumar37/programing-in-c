@@ -74,47 +74,27 @@ class Heap
     }
 };
 
-// class Heap
-// {
-// public:
-//     int *Arr;
-//     int Size;
-//     int Ind;
+void Heapify(int Arr[], int Ind, int N)
+{
+    int i = Ind;
+    int Left = i * 2;
+    int Right = i * 2 + 1;
 
-//     Heap(int Size)
-//     {
-//         this -> Size = Size;
-//         Arr = new int[Size];
-//         Ind = 0;
-//         Arr[Ind++] = -1;
-//     }
-
-//     void Print_Heap(void);
-//     void Insertion(int Ele);
-//     void Delete_Ele(void);
-// };
-
-// void Heapify(int *Arr, int n, int i)
-// {
-//     int Largest = i;
-//     int Left = i * 2;
-//     int Right = i * 2 + 1;
-
-//     if(Left < n && Arr[Largest] < Arr[Left])
-//     {
-//         Largest = Left;
-//     }
-//     else if(Right < n && Arr[Largest] < Arr[Right])
-//     {
-//         Largest = Right;
-//     }
-
-//     if(Largest != i)
-//     {
-//         swap(Arr[i], Arr[Largest]);
-//         Heapify(Arr, n, Largest);
-//     }
-// }
+    if(Left < N && Arr[Left] > Arr[i])
+    {
+        i = Left;
+    }
+    if(Right < N && Arr[Right] > Arr[i])
+    {
+        i = Right;
+    }
+    
+    if(i != Ind)
+    {
+        swap(Arr[i], Arr[Ind]);
+        Heapify(Arr, i, N);
+    }
+}
 
 int main()
 {
@@ -133,18 +113,18 @@ int main()
     cout<<endl;
     A.Print_Heap();
     // cout<<A.Arr[0]<<endl;
-    // int Num[] = {-1, 54, 53, 55, 52, 50};
-    // int N = sizeof(Num) / sizeof(int);
+    int Num[] = {-1, 54, 53, 55, 52, 50};
+    int N = sizeof(Num) / sizeof(int);
 
-    // for(int i=N/2; i>0; i--)
-    // {
-    //     Heapify(Num, N, i);
-    // }
+    for(int i=N/2; i>0; i-- )
+    {
+        Heapify(Num, i, N);
+    }
     
-    // for(int i=0; i<N; i++)
-    // {
-    //     cout<<Num[i]<<" ";
-    // }
+    for(int i=0; i<N; i++)
+    {
+        cout<<Num[i]<<" ";
+    }
 
     return 0;
 }

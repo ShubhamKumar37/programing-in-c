@@ -1,36 +1,37 @@
-#include <iostream>
+#include<iostream>
 
 using namespace std;
 
 class Heap
 {
     public:
-    int Ind;
     int Size;
     int *Arr;
-
+    int Ind;
     Heap(int Size)
     {
         this -> Size = Size;
-        Ind = 0;
         Arr = new int[Size];
+        Ind = 0;
+        Arr[Ind] = -1;
     }
+    
     void Insertion(int Ele)
     {
-        if(Ind < 0)
+        if(Ind >= Size)
         {
-            cout << "Insertion is not possible" << endl;
+            cout << "Insetion is not possible " << endl;
             return ;
         }
-
         Arr[++Ind] = Ele;
         int i = Ind;
+
         while(i > 1)
         {
             int Parent = i >> 1;
-            if(Arr[Parent] < Arr[Ind])
+            if(Arr[Parent] < Arr[i])
             {
-                swap(Arr[Parent], Arr[Ind]);
+                swap(Arr[i], Arr[Parent]);
                 i = Parent;
             }
             else
@@ -40,154 +41,105 @@ class Heap
         }
     }
 
-    void Print_Heap(void)
+    void Deletion(void)
     {
-        for (int i = 1; i <= Ind; i++)
-        {
-            cout << Arr[i] << " ";
-        }
-        cout << endl;
-    }
-    void Delete_Ele(void)
-    {
-        Arr[1] = Arr[Ind--];
+        swap(Arr[1], Arr[Ind--]);
         int i = 1;
-        while(i < Ind)
+        while(i <= Ind)
         {
             int Left = i * 2;
             int Right = i * 2 + 1;
-            if(Left <= Ind && Arr[Left] > Arr[i])
+
+            if(Left < Ind && Arr[Left] < Arr[i])
             {
-                swap(Arr[Left], Arr[i]);
+                swap(Arr[i], Arr[Left]);
                 i = Left;
             }
-            else if(Right <= Ind && Arr[Right] > Arr[i])
+            else if(Right < Ind && Arr[Right] < Arr[i])
             {
-                swap(Arr[Right], Arr[i]);
+                swap(Arr[i], Arr[Right]);
                 i = Right;
             }
-            else
+            else 
             {
                 return ;
             }
         }
     }
+
+    void Print_Heap(void)
+    {
+        for(int i = 0; i < Ind; i++)
+        {
+            cout << Arr[i] << " ";
+        }
+    }
 };
 
-void Heapify(int Arr[], int Ind, int N)
+void Heapify(int Arr[], int N, int i)
 {
-    int i = Ind;
+    int Ind = i;
     int Left = i * 2;
     int Right = i * 2 + 1;
 
-    if(Left < N && Arr[Left] > Arr[i])
+    if(Left <= N && Arr[Ind] < Arr[Left])
     {
-        i = Left;
+        Ind = Left;
     }
-    if(Right < N && Arr[Right] > Arr[i])
+    if(Right <= N && Arr[Ind] < Arr[Right])
     {
-        i = Right;
+        Ind = Right;
     }
-    
-    if(i != Ind)
+
+    if(Ind != i)
     {
         swap(Arr[i], Arr[Ind]);
-        Heapify(Arr, i, N);
+        Heapify(Arr, N, Ind);
+    }
+}
+
+void Heap_Sort(int Arr[], int N)
+{
+    int Ind = N;
+
+    for(int i=N-1; i>0; i--)
+    {
+        swap(Arr[1], Arr[Ind--]);
+        Heapify(Arr, Ind, 1);
     }
 }
 
 int main()
 {
     Heap A(10);
+    A.Insertion(50);
+    A.Insertion(10);
+    A.Insertion(30);
+    A.Insertion(70);
     A.Insertion(90);
-    A.Insertion(34);
-    A.Insertion(65);
-    A.Insertion(12);
-    A.Insertion(92);
-    A.Insertion(100);
 
     A.Print_Heap();
 
-    A.Delete_Ele();
-    
-    cout<<endl;
-    A.Print_Heap();
-    // cout<<A.Arr[0]<<endl;
-    int Num[] = {-1, 54, 53, 55, 52, 50};
-    int N = sizeof(Num) / sizeof(int);
+    int Arr[] = {-1, 10, 23, 5, 17, 32, 8, 13, 29, 11, 20};
+    int N = sizeof(Arr) / sizeof(int);
 
-    for(int i=N/2; i>0; i-- )
+    for(int i=N/2; i>0; i--)
     {
-        Heapify(Num, i, N);
+        Heapify(Arr, N - 1, i);
     }
-    
+
+    cout<<endl;
     for(int i=0; i<N; i++)
     {
-        cout<<Num[i]<<" ";
+        cout << Arr[i] << " ";
     }
+    Heap_Sort(Arr, N - 1);
+    cout<<endl;
+    for(int i=0; i<N; i++)
+    {
+        cout << Arr[i] << " ";
+    }
+    
 
     return 0;
 }
-
-// void Heap :: Delete_Ele(void)
-// {
-//     if(Ind == 0)
-//     {
-//         cout<<"Deleation is not possible as heap is empty " <<endl;
-//         return ;
-//     }
-
-//     Arr[1] = Arr[--Ind];
-//     int i = 1;
-
-//     while(i < Ind)
-//     {
-//         int Left_Ele = i * 2;
-//         int Right_Ele = i * 2 + 1;
-
-//         if(Left_Ele < Ind && Arr[Left_Ele] > Arr[i])
-//         {
-//             swap(Arr[i], Arr[Left_Ele]);
-//             i = Left_Ele;
-//         }
-//         else if(Right_Ele < Ind && Arr[Right_Ele] > Arr[i])
-//         {
-//             swap(Arr[i], Arr[Right_Ele]);
-//             i = Right_Ele;
-//         }
-//         else
-//         {
-//             return ;
-//         }
-//     }
-// }
-
-
-// void Heap :: Insertion(int Ele)
-// {
-//     Arr[Ind++] = Ele;
-//     int i = Ind - 1;
-
-//     while (i > 1)
-//     {
-//         int Parent = i >> 1;
-//         if (Ele > Arr[Parent])
-//         {
-//             swap(Arr[i], Arr[Parent]);
-//             i = Parent;
-//         }
-//         else
-//         {
-//             return;
-//         }
-//     }
-// }
-
-// void Heap :: Print_Heap(void)
-// {
-//     for (int i = 1; i < Ind; i++)
-//     {
-//         cout << Arr[i] << " ";
-//     }
-//     cout << endl;
-// }

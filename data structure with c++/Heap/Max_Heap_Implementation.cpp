@@ -108,7 +108,7 @@ void Heap_Sort(int Arr[], int N)
 
         Heapify(Arr, Ind, 1);
     }
-    
+
     // Method 1;
     // for(int i=N-1; i>0; i--)
     // {
@@ -148,6 +148,9 @@ int main()
         cout << Arr[i] << " ";
     }
     
+    // Priority queue is a heap(max heap)
+    // priority_queue<int> PQ;(for max heap)
+    // priority_queue<int, vector<int> , greater<int> > PQ;(for min heap)
 
     return 0;
 }

@@ -101,12 +101,20 @@ void Heapify(int Arr[], int N, int i)
 void Heap_Sort(int Arr[], int N)
 {
     int Ind = N;
-
-    for(int i=N-1; i>0; i--)
+    // Method 2;
+    while(Ind > 0)
     {
         swap(Arr[1], Arr[Ind--]);
+
         Heapify(Arr, Ind, 1);
     }
+    
+    // Method 1;
+    // for(int i=N-1; i>0; i--)
+    // {
+    //     swap(Arr[1], Arr[Ind--]);
+    //     Heapify(Arr, Ind, 1);
+    // }
 }
 
 int main()

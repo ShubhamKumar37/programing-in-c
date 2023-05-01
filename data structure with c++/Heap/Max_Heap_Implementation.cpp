@@ -76,6 +76,7 @@ class Heap
     }
 };
 
+
 void Heapify(int Arr[], int N, int i)
 {
     int Ind = i;
@@ -97,7 +98,6 @@ void Heapify(int Arr[], int N, int i)
         Heapify(Arr, N, Ind);
     }
 }
-
 void Heap_Sort(int Arr[], int N)
 {
     int Ind = N;

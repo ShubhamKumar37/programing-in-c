@@ -54,7 +54,7 @@ int time_req(int arr[], int n, int k)
 
 int main()
 {
-    int arr[] = {12, 34, 67, 90};
+    int arr[] = {6, 3, 2, 8, 7, 5};
     int n = sizeof(arr) / sizeof(int);
     int k = 2;
     cout << "Minimum hours required are " << time_req(arr, n, k) << endl;

@@ -88,9 +88,9 @@ int main()
 {
 
     Trie *root = new Trie();
-    root->Insert_Word("abcd");
-    root->Insert_Word("abd");
-    root->Insert_Word("abdc");
+    root -> Insert_Word("abcd");
+    root -> Insert_Word("abd");
+    root -> Insert_Word("abdc");
 
     bool Available = root->Search_Word("abdc");
 

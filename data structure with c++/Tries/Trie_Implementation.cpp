@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 
@@ -30,26 +30,26 @@ public:
 
     void Insert(Trie_Node *root, string Word)
     {
-        if(Word.length() == 0)
+        if (Word.length() == 0)
         {
-            root -> Is_Terminal = true;
-            return ;
+            root->Is_Terminal = true;
+            return;
         }
 
         int Ind = Word[0] - 'a';
         Trie_Node *Child;
 
-        if(root -> Children[Ind] != NULL)
+        if (root->Children[Ind] != NULL)
         {
-            Child = root -> Children[Ind];
+            Child = root->Children[Ind];
         }
         else
         {
             Child = new Trie_Node(Word[0]);
-            root -> Children[Ind] = Child;
+            root->Children[Ind] = Child;
         }
 
-        root -> Is_Terminal = true;
+        root->Is_Terminal = true;
         Insert(Child, Word.substr(1));
     }
 
@@ -60,17 +60,17 @@ public:
 
     bool Search(Trie_Node *root, string Word)
     {
-        if(Word.length() == 0)
+        if (Word.length() == 0)
         {
-            return root -> Is_Terminal;
+            return root->Is_Terminal;
         }
 
         int Ind = Word[0] - 'a';
-        Trie_Node* Child;
+        Trie_Node *Child;
 
-        if(root -> Children[Ind] != NULL)
+        if (root->Children[Ind] != NULL)
         {
-            Child = root -> Children[Ind];
+            Child = root->Children[Ind];
         }
         else
         {
@@ -89,17 +89,17 @@ public:
 int main()
 {
     Trie *root = new Trie();
-    root -> Insert_Word("abcd");
-    root -> Insert_Word("abd");
-    root -> Insert_Word("abdc");
+    root->Insert_Word("abcd");
+    root->Insert_Word("abd");
+    root->Insert_Word("abdc");
 
-    bool Available = root -> Search_Word("abdc");
+    bool Available = root->Search_Word("abdc");
 
-    if(Available)
+    if (Available)
     {
         cout << "String is founded " << endl;
     }
-    else 
+    else
     {
         cout << "String is not founded " << endl;
     }

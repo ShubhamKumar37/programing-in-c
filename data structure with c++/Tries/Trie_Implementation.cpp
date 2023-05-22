@@ -30,26 +30,40 @@ class Trie
 
     void Insert(Trie_Node *root, string Word)
     {
-        if(Word.length() == 0)
+        Trie_Node *Child = root;
+
+        for(char i : Word)
         {
-            root -> Is_Reached = true;
-            return ;
+            int Ind = i - 'a';
+            if(Child -> Children[Ind] == NULL)
+            {
+                Child -> Children[Ind] = new Trie_Node(i);
+            }
+
+            Child = Child -> Children[Ind];
         }
 
-        int Ind = Word[0] - 'a';
-        Trie_Node *Child;
+        Child -> Is_Reached = true;
+        // if(Word.length() == 0)
+        // {
+        //     root -> Is_Reached = true;
+        //     return ;
+        // }
 
-        if(root -> Children[Ind] != NULL)
-        {
-            Child = root -> Children[Ind];
-        }
-        else
-        {
-            Child = new Trie_Node(Word[0]);
-            root -> Children[Ind] = Child;
-        }
+        // int Ind = Word[0] - 'a';
+        // Trie_Node *Child;
 
-        Insert(Child, Word.substr(1));
+        // if(root -> Children[Ind] != NULL)
+        // {
+        //     Child = root -> Children[Ind];
+        // }
+        // else
+        // {
+        //     Child = new Trie_Node(Word[0]);
+        //     root -> Children[Ind] = Child;
+        // }
+
+        // Insert(Child, Word.substr(1));
     }
     void Insert_Word(string Word)
     {
@@ -58,29 +72,58 @@ class Trie
 
     bool Search(Trie_Node *root, string Word)
     {
-        if(Word.length() == 0)
+        Trie_Node *Child = root;
+
+        for(char i : Word)
         {
-            return root -> Is_Reached;
+            int Ind = i - 'a';
+            if(Child -> Children[Ind] == NULL)
+            {
+                return false;
+            }
+            Child = Child -> Children[Ind];
         }
+
+        return true;
+        // if(Word.length() == 0)
+        // {
+        //     return root -> Is_Reached;
+        // }
         
-        int Ind = Word[0] - 'a';
-        Trie_Node *Child;
+        // int Ind = Word[0] - 'a';
+        // Trie_Node *Child;
 
-        if(root -> Children[Ind] != NULL)
-        {
-            Child = root -> Children[Ind];
-        }
-        else 
-        {
-            return false;
-        }
+        // if(root -> Children[Ind] != NULL)
+        // {
+        //     Child = root -> Children[Ind];
+        // }
+        // else 
+        // {
+        //     return false;
+        // }
 
-        return Search(Child, Word.substr(1));
+        // return Search(Child, Word.substr(1));
     }
     bool Search_Word(string Word)
     {
         return Search(root, Word);
     }
+
+    // void Remove_Word(Trie_Node *root, string Word)
+    // {
+    //     if(Word.length() == 0)
+    //     {
+    //         if(root -> Is_Reached)
+    //         {
+    //             root -> Is_Reached == false;
+    //             int Ind = root -> Children[]
+    //         }
+    //     }
+    // }
+    // void Remove(string Word)
+    // {
+    //     Remove_Word(root, Word);
+    // }
 };
 
 

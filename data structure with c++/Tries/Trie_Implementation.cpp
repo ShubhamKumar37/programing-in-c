@@ -214,7 +214,7 @@ int main()
     {
         cout << "String is not founded " << endl;
     }
-    root->Delete_Word("abdc");
+    root->Delete_Word("fg");
     Available = root->Search_Word("abdc");
 
     if (Available)

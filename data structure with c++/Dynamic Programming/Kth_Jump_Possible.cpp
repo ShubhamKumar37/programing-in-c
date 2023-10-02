@@ -1,48 +1,81 @@
 #include<iostream>
 #include<VECTOR>
+#define MOD 1000000007
+
+int Add(int A, int B)
+{
+    return ((A % MOD) + (B % MOD)) % MOD;
+}
 
 using namespace std;
 
-int Find_Min_Energy(vector<int> &Arr, int &K, int N)
+int Find_Min_Energy_Memo(vector<int> &Arr, vector<int> &DP, int &K, int N)
 {
     if(N == 1)
     {
         return 0;
     }
 
-    vector<int> SO_Arr(N);
-    int Min_Energy = 0;
-
-    for(int i = 0; i < N; i++)
+    if(DP[N] != -1)
     {
-        Min_Energy = min(Min_Energy, abs(Arr[0] - Arr[i]));
-        SO_Arr.push_back(abs(Arr[0] - Arr[i]));
+        return DP[N];
     }
+    vector<int> SO_Arr(K);
+    int Min_Energy = INT_MAX;
 
-    int A = Find_Min_Energy_K(Arr, K - 1);
-
-    for(int i = K; i < N; i++)
+    for(int i = 1; i <= K; i++)
     {
-        vector<int> Temp = SO_Arr;
-        int Temp_Energy = INT_MAX;
-        for(int j = 0; j < K; j++)
+        if(N - i >= 0)
         {
-
+            SO_Arr[i] = Add(Find_Min_Energy_Memo(Arr, DP, K, N - 1), abs(Arr[N] - Arr[N - i]));
+            if(SO_Arr[i] < Min_Energy)
+            {
+                Min_Energy = SO_Arr[i];
+            }
         }
     }
+
+    return DP[N] = Min_Energy;
+}
+int Find_Min_Energy(vector<int> &Arr, vector<int> &DP, int &K, int N)
+{
+    if(N == 1)
+    {
+        return 0;
+    }
+
+    vector<int> SO_Arr(K);
+    int Min_Energy = INT_MAX;
+
+    for(int i = 1; i <= K; i++)
+    {
+        if(N - i >= 0)
+        {
+            SO_Arr[i] = Add(Find_Min_Energy(Arr, DP, K, N - 1), abs(Arr[N] - Arr[N - i]));
+            if(SO_Arr[i] < Min_Energy)
+            {
+                Min_Energy = SO_Arr[i];
+            }
+        }
+    }
+
+    return Min_Energy;
 }
 
 int main()
 {
-    vector<int> Arr(10);
-    int K = 4;
+    int N = 4;
+    vector<int> Arr(N);
+    vector<int> DP(N, -1);
+    int K = 2;
 
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < N; i++)
     {
         cout << "Enter the elements in vector ... " << endl;
         cin >> Arr[i];
     }
 
-    cout << "Minimum energy required for frog to jump is " << Find_Min_Energy(Arr, K, 10);
+    // cout << "Minimum energy required for frog to jump is " << Find_Min_Energy(Arr, K, N);
+    cout << "Minimum energy required for frog to jump is " << Find_Min_Energy_Memo(Arr, DP, K, N - 1);
     return 0;
 }

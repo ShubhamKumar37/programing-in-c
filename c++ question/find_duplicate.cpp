@@ -8,7 +8,7 @@ int main()
     int n=sizeof(arr)/sizeof(int);
     for (int i=0;i<n;i++)
     {
-        sum=sum ^arr[i];
+        sum=sum ^ arr[i];
     }
     for(int i=1;i<n;i++)
     {

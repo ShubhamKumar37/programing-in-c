@@ -12,12 +12,12 @@ int main()
         // cout << sum << " ";
     }
     // cout << endl;
-    // for(int i=1;i<n;i++)
-    // {
-    //     sum=sum^i;
-    //     cout << sum << " ";
-    // }
-    // cout << endl;
+    for(int i=1;i<=n;i++)
+    {
+        sum=sum^i;
+        // cout << sum << " ";
+    }
+    cout << endl;
     cout<<"Duplicate number is "<<sum<<endl;
 
     return 0;

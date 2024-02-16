@@ -1,2 +1,2 @@
 
-    // cout<<A.c<<e
+class firework : public shops
